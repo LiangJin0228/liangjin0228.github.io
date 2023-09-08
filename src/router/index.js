@@ -4,6 +4,10 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    redirect: '/index'
+  },
+  {
+    path: '/index',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
