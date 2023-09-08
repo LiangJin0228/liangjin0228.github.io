@@ -14,11 +14,11 @@ onMounted(() => {
 
 const buttons = [
     {
-        value: '',
+        value: 'index',
         text: 'Home',
         icon: 'mdi-home',
         textClass: 'text-green',
-        to: '/',
+        to: '/index',
     },
     {
         value: 'resume',
@@ -46,12 +46,12 @@ const buttons = [
 
 
 <template>
-    <v-app-bar flat :elevation="5">
+    <v-app-bar app :elevation="5">
         <v-app-bar-nav-icon v-if="!mobile">
             <v-icon icon="mdi-human-greeting" color="green-darken-4" />
         </v-app-bar-nav-icon>
         <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
-            Welcome!
+            Hi, I'am LiangJin! A Full-Stack Developer.
         </v-app-bar-title>
         <v-spacer v-if="mobile"></v-spacer>
 

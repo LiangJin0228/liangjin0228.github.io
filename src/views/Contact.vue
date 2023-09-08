@@ -1,9 +1,9 @@
 <script setup>
-import RegisterForm from '../components/register_component.vue'
+import SendMailForm from '../components/SendMail.vue'
 </script>
 
 <template>
-    <v-main>
-        <RegisterForm></RegisterForm>
-    </v-main>
+    <v-container>
+        <SendMailForm></SendMailForm>
+    </v-container>
 </template>
