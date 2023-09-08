@@ -1,30 +1,68 @@
 <script setup>
+import { computed, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useDisplay } from 'vuetify';
 
+const route = useRoute();
+const path = computed(() => route.path.replace('/', ''));
+const pageTitle = ref('');
+const { mobile } = useDisplay()
+
+onMounted(() => {
+    pageTitle.value = path.value;
+});
+
+const buttons = [
+    {
+        value: '',
+        text: 'Home',
+        icon: 'mdi-home',
+        textClass: 'text-green',
+        to: '/',
+    },
+    {
+        value: 'resume',
+        text: 'Resume',
+        icon: 'mdi-file-account',
+        textClass: 'text-brown-darken-1',
+        to: '/resume',
+    },
+    {
+        value: 'about',
+        text: 'About Me',
+        icon: 'mdi-information',
+        textClass: 'text-blue',
+        to: '/about',
+    },
+    {
+        value: 'contact',
+        text: 'Contact Me',
+        icon: 'mdi-phone-incoming',
+        textClass: 'text-yellow-darken-4',
+        to: '/contact',
+    },
+];
 </script>
+
 
 <template>
     <v-app-bar flat :elevation="5">
-        <v-app-bar-nav-icon>
+        <v-app-bar-nav-icon v-if="!mobile">
             <v-icon icon="mdi-human-greeting" color="green-darken-4" />
         </v-app-bar-nav-icon>
-        <v-app-bar-title class="text-deep-purple-lighten-2">
+        <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
             Welcome!
         </v-app-bar-title>
+        <v-spacer v-if="mobile"></v-spacer>
 
-        <v-btn rounded="xl" size="large" prepend-icon="mdi-home" class="text-green" value="" to="/">Home</v-btn>
-        <v-btn rounded="xl" size="large" prepend-icon="mdi-file-account" class="text-brown-darken-1" value="resume"
-            to="/resume">Resume</v-btn>
-        <v-btn rounded="xl" size="large" prepend-icon="mdi-information" class="text-blue" value="about" to="/about">About
-            Me</v-btn>
-        <v-btn rounded="xl" size="large" prepend-icon="mdi-phone-incoming" class="text-yellow-darken-4" value="contact"
-            to="/contact">Contact Me</v-btn>
+        <v-btn-toggle v-model="pageTitle">
+            <v-btn v-for="button in buttons" :key="button.value" rounded="xl" size="large" :class="button.textClass"
+                :value="button.value" :to="button.to">
+                <v-icon :icon="button.icon" />
+                <span v-if="!mobile">{{ button.text }}</span>
+            </v-btn>
+        </v-btn-toggle>
 
         <v-spacer></v-spacer>
-        <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-        <v-btn icon>
-            <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
     </v-app-bar>
 </template>
