@@ -1,1 +1,0 @@
-import{_ as o}from"./plugin-vueexport-helper-c27b6911.js";import{V as r}from"./VMain-a5491ed1.js";import{o as e,b as t}from"./index-23367411.js";import"./ssrBoot-09a571f2.js";const c={};function s(a,n){return e(),t(r,{class:"bg-grey-lighten-3"})}const p=o(c,[["render",s]]);export{p as default};
