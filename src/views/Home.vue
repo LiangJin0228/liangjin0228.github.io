@@ -1,35 +1,34 @@
-<script setup>
-import { useDisplay } from 'vuetify';
-
-const { mobile } = useDisplay()
-</script>
-
 <template>
-  <v-container fluid>
-    <section>
-      <v-img src="../assets/clark-tibbs-oqStl2L5oxI-unsplash.jpg"></v-img>
-    </section>
-
-    <section class="my-10">
-      <v-row justify="center" align="center">
-
-        <v-col :cols="mobile ? '8' : '3'">
-          <v-card class="rounded-lg">
+  <section>
+    <v-parallax height="60vh" src="../assets/home-background-banner.jpg" class="align-center justify-center">
+      <v-row class="pa-16 align-center">
+        <v-col cols="2"></v-col>
+        <v-col cols="6" class="pl-16 justify-end">
+          <v-card color="rgba(0,0,0,0)" flat class="pa-8 elevation-15 rounded-xl">
             <v-card-title>Tan Liang Jin</v-card-title>
             <v-card-subtitle>Full-Stack Developer</v-card-subtitle>
-            <v-card-text>Hi, I'm a full-stack developer who loves deep thinking and programming. I'm a problem solver and
+            <v-card-text>
+              Hi, I'm a full-stack developer who loves deep thinking and programming. I'm a problem solver and
               enjoy turning concepts into real-world applications. My mobility and creativity allow me to constantly
-              improve and provide value to my team.</v-card-text>
+              improve and provide value to my team.
+            </v-card-text>
           </v-card>
         </v-col>
-
-        <v-col :cols="mobile ? '4' : '2'">
-          <v-card class="rounded-xl" :height="!mobile ? '12rem' : ''">
-            <v-img src="../assets/myPhoto.jpg" class="ma-auto"></v-img>
-          </v-card>
+        <v-col cols="2">
+          <v-img src="../assets/liangjin-license_photo-removebg-preview.png" width="10vw"
+            class="elevation-15 rounded-xl"></v-img>
         </v-col>
-
+        <v-col cols="2"></v-col>
       </v-row>
-    </section>
-  </v-container>
+    </v-parallax>
+  </section>
+  <v-row class="mt-1 justify-center align-center">
+    <v-col cols="8" class="pl-16">
+      <v-card class="elevation-15 rounded-lg">
+        <v-card-title>Hello</v-card-title>
+        <v-card-subtitle>Is me</v-card-subtitle>
+        <v-card-text>Liang Jin</v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
