@@ -25,7 +25,7 @@ const socialMedias = reactive([
 <template>
     <v-footer rounded class="bg-grey-lighten-1">
         <v-row justify="center" no-gutters>
-            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/">Home</v-btn>
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/index">Home</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/resume">Resume</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/about">About Me</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/contact">Contact Me</v-btn>
