@@ -1,3 +1,9 @@
+<script setup>
+import { useDisplay } from 'vuetify';
+
+const { mobile } = useDisplay()
+</script>
+
 <template>
   <v-container fluid>
     <section>
@@ -7,7 +13,7 @@
     <section class="my-10">
       <v-row justify="center" align="center">
 
-        <v-col cols="5">
+        <v-col :cols="mobile ? '8' : '3'">
           <v-card class="rounded-lg">
             <v-card-title>Tan Liang Jin</v-card-title>
             <v-card-subtitle>Full-Stack Developer</v-card-subtitle>
@@ -17,8 +23,10 @@
           </v-card>
         </v-col>
 
-        <v-col cols="3">
-          <v-img src="../assets/myPhoto.jpg" width="50%" class="rounded-xl"></v-img>
+        <v-col :cols="mobile ? '4' : '2'">
+          <v-card class="rounded-xl" :height="!mobile ? '12rem' : ''">
+            <v-img src="../assets/myPhoto.jpg" class="ma-auto"></v-img>
+          </v-card>
         </v-col>
 
       </v-row>
