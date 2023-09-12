@@ -47,19 +47,19 @@ const buttons = [
 
 <template>
     <v-app-bar app :elevation="5">
-        <v-app-bar-nav-icon v-if="!mobile">
+        <v-app-bar-nav-icon v-show="!mobile">
             <v-icon icon="mdi-human-greeting" color="green-darken-4" />
         </v-app-bar-nav-icon>
-        <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
+        <v-app-bar-title class="text-deep-purple-lighten-2" v-show="!mobile">
             Hi, I'am LiangJin! A Full-Stack Developer.
         </v-app-bar-title>
-        <v-spacer v-if="mobile"></v-spacer>
+        <v-spacer v-show="mobile"></v-spacer>
 
         <v-btn-toggle v-model="pageTitle">
             <v-btn v-for="button in buttons" :key="button.value" rounded="xl" size="large" :class="button.textClass"
                 :value="button.value" :to="button.to">
                 <v-icon :icon="button.icon" />
-                <span v-if="!mobile">{{ button.text }}</span>
+                <span v-show="!mobile">{{ button.text }}</span>
             </v-btn>
         </v-btn-toggle>
 
