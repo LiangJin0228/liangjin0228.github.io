@@ -3,16 +3,14 @@ export default {
     data: () => ({
         dialog: false,
     }),
-}
+};
 </script>
 
 <template>
     <v-row justify="center">
         <v-dialog v-model="dialog" persistent width="1024">
             <template v-slot:activator="{ props }">
-                <v-btn color="primary" v-bind="props">
-                    Open Dialog
-                </v-btn>
+                <v-btn color="primary" v-bind="props"> Open Dialog </v-btn>
             </template>
             <v-card>
                 <v-card-title>
@@ -44,9 +42,17 @@ export default {
                                 <v-select :items="['0-17', '18-29', '30-54', '54+']" label="Age*" required></v-select>
                             </v-col>
                             <v-col cols="12" sm="6">
-                                <v-autocomplete
-                                    :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                                    label="Interests" multiple></v-autocomplete>
+                                <v-autocomplete :items="[
+                                    'Skiing',
+                                    'Ice hockey',
+                                    'Soccer',
+                                    'Basketball',
+                                    'Hockey',
+                                    'Reading',
+                                    'Writing',
+                                    'Coding',
+                                    'Basejump',
+                                ]" label="Interests" multiple></v-autocomplete>
                             </v-col>
                         </v-row>
                     </v-container>
