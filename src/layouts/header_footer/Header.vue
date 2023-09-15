@@ -6,7 +6,7 @@ import { useDisplay } from 'vuetify';
 const route = useRoute();
 const path = computed(() => route.path.replace('/', ''));
 const pageTitle = ref('');
-const { mobile } = useDisplay()
+const { mobile } = useDisplay();
 
 onMounted(() => {
     pageTitle.value = path.value;
