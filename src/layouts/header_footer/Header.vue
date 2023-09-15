@@ -1,15 +1,17 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import { useDisplay } from 'vuetify';
+import { computed, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import { useDisplay } from "vuetify";
 
 const route = useRoute();
-const path = computed(() => route.path.replace('/', ''));
-const pageTitle = ref('');
+
+const path = computed(() => route.path.replace("/", ""));
+const pageTitle = ref("");
+
 const { mobile } = useDisplay();
 
 onMounted(() => {
-    pageTitle.value = path.value;
+  pageTitle.value = path.value;
 });
 
 const buttons = [
@@ -44,25 +46,30 @@ const buttons = [
 ];
 </script>
 
-
 <template>
-    <v-app-bar app :elevation="5">
-        <v-app-bar-nav-icon v-show="!mobile">
-            <v-icon icon="mdi-human-greeting" color="green-darken-4" />
-        </v-app-bar-nav-icon>
-        <v-app-bar-title class="text-deep-purple-lighten-2" v-show="!mobile">
-            Hi, I'am LiangJin! A Full-Stack Developer.
-        </v-app-bar-title>
-        <v-spacer v-show="mobile"></v-spacer>
+  <v-app-bar app flat :elevation="5">
+    <v-app-bar-nav-icon v-if="!mobile">
+      <v-icon icon="mdi-human-greeting" color="green-darken-4" />
+    </v-app-bar-nav-icon>
+    <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
+      Welcome!
+    </v-app-bar-title>
+    <v-spacer v-if="mobile"></v-spacer>
 
-        <v-btn-toggle v-model="pageTitle">
-            <v-btn v-for="button in buttons" :key="button.value" rounded="xl" size="large" :class="button.textClass"
-                :value="button.value" :to="button.to">
-                <v-icon :icon="button.icon" />
-                <span v-show="!mobile">{{ button.text }}</span>
-            </v-btn>
-        </v-btn-toggle>
-
-        <v-spacer></v-spacer>
-    </v-app-bar>
+    <v-btn-toggle v-model="pageTitle">
+      <v-btn
+        v-for="button in buttons"
+        :key="button.value"
+        rounded="xl"
+        :size="mobile ? 'x-large' : 'large'"
+        :class="button.textClass"
+        :value="button.value"
+        :to="button.to"
+      >
+        <v-icon :icon="button.icon" :size="mobile ? 'x-large' : 'large'" />
+        <span v-if="!mobile">{{ button.text }}</span>
+      </v-btn>
+    </v-btn-toggle>
+    <v-spacer></v-spacer>
+  </v-app-bar>
 </template>
