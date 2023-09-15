@@ -1,68 +1,74 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import { useDisplay } from 'vuetify';
+import { computed, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import { useDisplay } from "vuetify";
 
 const route = useRoute();
-const path = computed(() => route.path.replace('/', ''));
-const pageTitle = ref('');
-const { mobile } = useDisplay()
+const path = computed(() => route.path.replace("/", ""));
+const pageTitle = ref("");
+const { mobile } = useDisplay();
 
 onMounted(() => {
-    pageTitle.value = path.value;
+  pageTitle.value = path.value;
 });
 
 const buttons = [
-    {
-        value: '',
-        text: 'Home',
-        icon: 'mdi-home',
-        textClass: 'text-green',
-        to: '/',
-    },
-    {
-        value: 'resume',
-        text: 'Resume',
-        icon: 'mdi-file-account',
-        textClass: 'text-brown-darken-1',
-        to: '/resume',
-    },
-    {
-        value: 'about',
-        text: 'About Me',
-        icon: 'mdi-information',
-        textClass: 'text-blue',
-        to: '/about',
-    },
-    {
-        value: 'contact',
-        text: 'Contact Me',
-        icon: 'mdi-phone-incoming',
-        textClass: 'text-yellow-darken-4',
-        to: '/contact',
-    },
+  {
+    value: "",
+    text: "Home",
+    icon: "mdi-home",
+    textClass: "text-green",
+    to: "/",
+  },
+  {
+    value: "resume",
+    text: "Resume",
+    icon: "mdi-file-account",
+    textClass: "text-brown-darken-1",
+    to: "/resume",
+  },
+  {
+    value: "about",
+    text: "About Me",
+    icon: "mdi-information",
+    textClass: "text-blue",
+    to: "/about",
+  },
+  {
+    value: "contact",
+    text: "Contact Me",
+    icon: "mdi-phone-incoming",
+    textClass: "text-yellow-darken-4",
+    to: "/contact",
+  },
 ];
 </script>
 
-
 <template>
-    <v-app-bar flat :elevation="5">
-        <v-app-bar-nav-icon v-if="!mobile">
-            <v-icon icon="mdi-human-greeting" color="green-darken-4" />
-        </v-app-bar-nav-icon>
-        <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
-            Welcome!
-        </v-app-bar-title>
-        <v-spacer v-if="mobile"></v-spacer>
+  <v-app-bar flat :elevation="5">
+    <v-app-bar-nav-icon v-if="!mobile">
+      <v-icon icon="mdi-human-greeting" color="green-darken-4" />
+    </v-app-bar-nav-icon>
+    <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
+      Welcome!
+    </v-app-bar-title>
+    <v-spacer v-if="mobile"></v-spacer>
 
-        <v-btn-toggle v-model="pageTitle">
-            <v-btn v-for="button in buttons" :key="button.value" rounded="xl" size="large" :class="button.textClass"
-                :value="button.value" :to="button.to">
-                <v-icon :icon="button.icon" />
-                <span v-if="!mobile">{{ button.text }}</span>
-            </v-btn>
-        </v-btn-toggle>
+    <v-btn-toggle v-model="pageTitle">
+      <v-btn
+        v-for="button in buttons"
+        :key="button.value"
+        rounded="xl"
+        :size="mobile ? 'x-large' : 'large'"
+        :class="button.textClass"
+        :value="button.value"
+        :to="button.to"
+      >
+        <v-icon :icon="button.icon" :size="mobile ? 'x-large' : 'large'" />
+        <span v-if="!mobile">{{ button.text }}</span>
+      </v-btn>
+    </v-btn-toggle>
 
-        <v-spacer></v-spacer>
-    </v-app-bar>
+    <v-spacer></v-spacer>
+  </v-app-bar>
 </template>
