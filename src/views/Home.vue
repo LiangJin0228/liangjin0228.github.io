@@ -74,36 +74,39 @@ export default {
 </script>
 
 <template>
-  <div class="bg-deep-purple-darken-3">
-    <v-parallax height="60vh" src="../assets/home-background-banner.jpg" class="align-center">
-      <v-card color="rgba(0,0,0,0)" width="80%" flat class="ma-auto">
-        <v-card-title class="text-h3 ma-2">陳亮憬</v-card-title>
-        <v-card-subtitle class="text-h5 ma-2" style="line-height: 1.3;">全端工程師</v-card-subtitle>
-        <v-card-text class="text-h6 ma-2" style="line-height: 1.3;">
-          大家好，我是一名全端開發人員，熱衷於編碼和批判性思維。我樂於解決覆雜的問題，並將抽象的想法轉化為實際的現實應用。我的適應能力和創造力促使我不斷提高自己的技能，為我所在的任何團隊貢獻價值。
-        </v-card-text>
-      </v-card>
-    </v-parallax>
-    <v-container>
-      <v-row ref="info" class="flex-nowrap overflow-x-auto hide-scrollbar" @wheel="changeScrollDirections">
-        <v-col v-for="experience in experiences">
-          <v-hover v-slot="{ isHovering, props }">
-            <v-card class="mx-auto" max-width="344" height="35rem" v-bind="props">
-              <v-img :src="experience.img_path" aspect-ratio="1" height="15rem"></v-img>
-
-              <v-card-title class="text-h6 text-primary">{{ experience.unit }}</v-card-title>
-              <v-card-subtitle class="text-h6 text-primary">{{ experience.title }}</v-card-subtitle>
-              <v-card-text>{{ experience.content }}</v-card-text>
-
-              <v-overlay :model-value="isHovering" contained scrim="#036358" class="align-center justify-center">
-                <v-btn variant="flat">See more info</v-btn>
-              </v-overlay>
+  <V-container fluid class="bg-deep-purple-darken-3 pa-0 fill-height">
+    <v-parallax src="../assets/home-background-banner.jpg" class="align-center fill-height">
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-card color="rgba(0,0,0,0)" width="80%" flat class="ma-auto">
+              <v-card-title class="text-h3 ma-2">陳亮憬</v-card-title>
+              <v-card-subtitle class="text-h5 ma-2" style="line-height: 1.3;">全端工程師</v-card-subtitle>
+              <v-card-text class="text-h6 ma-2" style="line-height: 1.3;">
+                大家好，我是一名全端開發人員，熱衷於編碼和批判性思維。我樂於解決覆雜的問題，並將抽象的想法轉化為實際的現實應用。我的適應能力和創造力促使我不斷提高自己的技能，為我所在的任何團隊貢獻價值。
+              </v-card-text>
             </v-card>
-          </v-hover>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+          </v-col>
+        </v-row>
+
+        <v-row ref="info" class="flex-nowrap overflow-x-auto hide-scrollbar mt-15" @wheel="changeScrollDirections">
+          <v-col v-for="experience in experiences">
+            <v-hover v-slot="{ isHovering, props }">
+              <v-card class="mx-auto" max-width="344" height="35rem" v-bind="props">
+                <v-img :src="experience.img_path" aspect-ratio="1" height="15rem"></v-img>
+                <v-card-title class="text-h6 text-primary">{{ experience.unit }}</v-card-title>
+                <v-card-subtitle class="text-h6 text-primary">{{ experience.title }}</v-card-subtitle>
+                <v-card-text>{{ experience.content }}</v-card-text>
+                <v-overlay :model-value="isHovering" contained scrim="#036358" class="align-center justify-center">
+                  <v-btn variant="flat">See more info</v-btn>
+                </v-overlay>
+              </v-card>
+            </v-hover>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-parallax>
+  </V-container>
 </template>
 
 <style scoped>
