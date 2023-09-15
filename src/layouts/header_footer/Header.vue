@@ -13,39 +13,39 @@ onMounted(() => {
 });
 
 const buttons = [
-  {
-    value: "",
-    text: "Home",
-    icon: "mdi-home",
-    textClass: "text-green",
-    to: "/",
-  },
-  {
-    value: "resume",
-    text: "Resume",
-    icon: "mdi-file-account",
-    textClass: "text-brown-darken-1",
-    to: "/resume",
-  },
-  {
-    value: "about",
-    text: "About Me",
-    icon: "mdi-information",
-    textClass: "text-blue",
-    to: "/about",
-  },
-  {
-    value: "contact",
-    text: "Contact Me",
-    icon: "mdi-phone-incoming",
-    textClass: "text-yellow-darken-4",
-    to: "/contact",
-  },
+    {
+        value: 'index',
+        text: 'Home',
+        icon: 'mdi-home',
+        textClass: 'text-green',
+        to: '/index',
+    },
+    {
+        value: 'resume',
+        text: 'Resume',
+        icon: 'mdi-file-account',
+        textClass: 'text-brown-darken-1',
+        to: '/resume',
+    },
+    {
+        value: 'about',
+        text: 'About Me',
+        icon: 'mdi-information',
+        textClass: 'text-blue',
+        to: '/about',
+    },
+    {
+        value: 'contact',
+        text: 'Contact Me',
+        icon: 'mdi-phone-incoming',
+        textClass: 'text-yellow-darken-4',
+        to: '/contact',
+    },
 ];
 </script>
 
 <template>
-  <v-app-bar flat :elevation="5">
+  <v-app-bar app flat :elevation="5">
     <v-app-bar-nav-icon v-if="!mobile">
       <v-icon icon="mdi-human-greeting" color="green-darken-4" />
     </v-app-bar-nav-icon>
@@ -68,7 +68,6 @@ const buttons = [
         <span v-if="!mobile">{{ button.text }}</span>
       </v-btn>
     </v-btn-toggle>
-
     <v-spacer></v-spacer>
   </v-app-bar>
 </template>
