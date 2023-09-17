@@ -74,7 +74,7 @@ export default {
 <template>
   <V-container fluid class="bg-deep-purple-darken-3 pa-0 fill-height">
     <v-parallax src="../assets/home-background-banner.jpg" class="align-center fill-height">
-      <v-container>
+      <v-container style="max-width: 1280px;">
         <v-row>
           <v-col>
             <v-card color="rgba(0,0,0,0)" class="elevation-15 rounded-xl" style="backdrop-filter: blur(4px)">
@@ -92,15 +92,15 @@ export default {
           <v-col v-for="experience in experiences" :key="experience.title">
             <v-hover v-slot="{ isHovering, props }">
               <v-card class="mx-auto pa-5 rounded-xl" max-width="344" width="23rem" height="35rem" v-bind="props">
-                <v-img :src="experience.img_path" aspect-ratio="1" height="15rem" class="ma-15"></v-img>
+                <v-img :src="experience.img_path" aspect-ratio="1" height="15rem" class="ma-15 elevation"></v-img>
                 <v-card-title class="text-h5 text-primary text-wrap" style="line-height: 1.5">
                   {{ experience.unit }}
                 </v-card-title>
                 <v-card-subtitle class="text-h5 text-primary text-wrap" style="line-height: 1.5">
                   {{ experience.title }}
                 </v-card-subtitle>
-                <v-overlay :model-value="isHovering" contained scrim="#036358" class="align-center justify-center">
-                  <v-btn variant="flat" @click="show(experience)">See more info</v-btn>
+                <v-overlay :model-value="isHovering" contained scrim="#7986CB" class="align-center justify-center">
+                  <v-btn class="bg-green-lighten-1" @click="show(experience)">See more info</v-btn>
                 </v-overlay>
               </v-card>
             </v-hover>
@@ -108,13 +108,13 @@ export default {
         </v-row>
       </v-container>
       <v-dialog v-model="isShowedDialog" transition="dialog-top-transition" persistent>
-        <v-card :width="mobile ? '80vw' : '50vw'" max-width="1024" class="ma-auto">
-          <v-card-text class="text-h5">
+        <v-card :width="mobile ? '80vw' : '50vw'" class="ma-auto rounded-lg" style="max-width: 720px;">
+          <v-card-text class="text-h5 h-75">
             {{ selectedExperience.content }}
             <a v-if="selectedExperience.link" :href="selectedExperience.link">{{ selectedExperience.link }}</a>
           </v-card-text>
 
-          <v-btn @click="isShowedDialog = false">close</v-btn>
+          <v-btn class="bg-green-lighten-1" @click="isShowedDialog = false">close</v-btn>
         </v-card>
       </v-dialog>
     </v-parallax>
