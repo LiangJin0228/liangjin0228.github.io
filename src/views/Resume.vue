@@ -1,10 +1,24 @@
 <script setup>
 import { ref } from "vue";
 import MyPhoto from "../assets/liangjin-license_photo-removebg-preview.png";
+
+const scrollContainer = ref(null);
+
+function scrollToTop() {
+    if (scrollContainer.value) {
+        scrollContainer.value.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+    }
+}
 </script>
 
 <template>
     <v-container>
+        <v-btn @click="scrollToTop" style="right: 2rem; top: 82vh; z-index: 9999;" position="fixed"
+            class="bg-indigo-darken-1" icon="mdi-format-vertical-align-top" size="large"> </v-btn>
         <v-navigation-drawer elevation="5">
             <v-list>
                 <v-list-item :prepend-avatar=MyPhoto title="Tan Liang Jin" subtitle="liangjin0228@gmailcom"></v-list-item>
@@ -24,7 +38,7 @@ import MyPhoto from "../assets/liangjin-license_photo-removebg-preview.png";
             </v-list>
         </v-navigation-drawer>
 
-        <section style="height: 80vh;" class="overflow-auto hide-scrollbar">
+        <section ref="scrollContainer" style="height: 80vh;" class="overflow-auto hide-scrollbar">
             <v-container id="experience">
                 <v-card width="100%">
                     <v-card-title class="elevation-1 mb-2">Information Resources Department staff</v-card-title>
