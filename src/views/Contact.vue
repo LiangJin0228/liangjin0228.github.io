@@ -1,6 +1,6 @@
 <template>
     <v-contaner>
-        <v-card>
+        <v-card class="ma-7 pa-3">
             <v-card-item>
                 <v-form>
                     <v-row>
@@ -19,10 +19,29 @@
                 <v-btn variant="tonal" color="success">Send Mail To Liang Jin</v-btn>
             </v-card-actions>
         </v-card>
-        <v-card></v-card>
-        <v-card></v-card>
-        <v-card></v-card>
-        <v-card></v-card>
+        <v-card class="ma-7 pa-3">
+            <v-card-title>
+                <v-icon>mdi-github</v-icon> GitHub
+            </v-card-title>
 
+        </v-card>
+        <v-card class="ma-7 pa-3">
+            <v-card-title>
+                <v-icon>mdi-linkedin</v-icon> Linkedin
+            </v-card-title>
+
+        </v-card>
+        <v-card class="ma-7 pa-3">
+            <v-card-title>
+                <v-icon>mdi-file-account</v-icon> 104
+            </v-card-title>
+
+        </v-card>
+        <v-card class="ma-7 pa-3">
+            <v-card-title>
+                <v-icon>mdi-web</v-icon> ithome
+            </v-card-title>
+
+        </v-card>
     </v-contaner>
 </template>
