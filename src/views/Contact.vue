@@ -28,6 +28,7 @@ const nameRules = [
 const emailRules = [
     v => !!v || 'Email is required',
     v => /.+@.+\..+/.test(v) || 'Email must be valid',
+    v => !/\s/.test(v) || 'Email must not contain spaces'
 ];
 
 const subjectRules = [
