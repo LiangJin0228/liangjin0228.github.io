@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { useDisplay } from "vuetify";
 import MyPhoto from "../assets/liangjin-license_photo-removebg-preview.png";
 
