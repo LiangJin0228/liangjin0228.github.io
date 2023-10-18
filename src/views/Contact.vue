@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { initEmailJS, sendMail } from '../../emailJS.vue';
 
 const form = ref(null)
@@ -8,7 +8,7 @@ const name = ref('')
 const email = ref('')
 const subject = ref('')
 const message = ref('')
-const sendMessage = ref('')
+const sendSuccess = ref('')
 
 const templateParams = computed(() => {
     return {
@@ -28,6 +28,7 @@ const nameRules = [
 const emailRules = [
     v => !!v || 'Email is required',
     v => /.+@.+\..+/.test(v) || 'Email must be valid',
+    v => !/\s/.test(v) || 'Email must not contain spaces'
 ];
 
 const subjectRules = [
@@ -43,7 +44,7 @@ const messageRules = [
 function send(templateParams) {
     sendMail(templateParams)
     form.value.reset()
-    sendMessage.value = "Your mail has been sent!"
+    sendSuccess.value = "Your mail has been sent!"
 }
 
 onMounted(() => {
@@ -69,12 +70,28 @@ onMounted(() => {
                     <v-text-field v-model="subject" variant="outlined" label="Subject" :rules="subjectRules"></v-text-field>
                     <v-textarea v-model="message" variant="outlined" label="Message..." :rules="messageRules"></v-textarea>
                 </v-form>
-                <span class="text-success">{{ sendMessage }}</span>
             </v-card-item>
             <v-card-actions>
-                <v-btn :disabled="!valid" variant="tonal" color="success" @click="send(templateParams)">Send Mail To
-                    Liang
-                    Jin</v-btn>
+                <v-dialog>
+                    <template v-slot:activator="{ props }">
+                        <v-btn v-bind="props" :disabled="!valid" variant="tonal" color="success"
+                            @click="send(templateParams)">
+                            Send Mail To Liang Jin
+                        </v-btn>
+                    </template>
+
+                    <template v-slot:default="{ isActive }">
+                        <v-card class="w-25 ma-auto">
+                            <v-card-text>
+                                <span class="text-h6 font-weight-bold">{{ sendSuccess }}</span>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-btn size="large" rounded="lg" class="ma-auto" text="Close Dialog"
+                                    @click="isActive.value = false"></v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </template>
+                </v-dialog>
             </v-card-actions>
         </v-card>
 
