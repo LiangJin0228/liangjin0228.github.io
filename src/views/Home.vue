@@ -63,7 +63,7 @@ const experiences = ref([
         </v-row>
       </v-container>
 
-      <Homecard :experiences="experiences"></Homecard>
+      <Homecard :my_cards="experiences"></Homecard>
 
     </v-parallax>
   </V-container>
