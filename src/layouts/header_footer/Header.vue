@@ -47,22 +47,15 @@ const buttons = [
 </script>
 
 <template>
-  <v-app-bar app flat :elevation="5">
-    <v-app-bar-nav-icon v-if="!smAndDown">
-      <v-icon icon="mdi-human-greeting" color="green-darken-4" />
-    </v-app-bar-nav-icon>
-    <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!smAndDown">
-      Welcome!
-    </v-app-bar-title>
-    <v-spacer v-if="smAndDown"></v-spacer>
-
-    <v-btn-toggle v-model="pageTitle">
-      <v-btn v-for="button in buttons" :key="button.value" rounded="xl" :size="smAndDown ? 'x-large' : 'large'"
-        :class="button.textClass" :value="button.value" :to="button.to">
-        <v-icon :icon="button.icon" :size="smAndDown ? 'x-large' : 'large'" />
-        <span v-if="!smAndDown">{{ button.text }}</span>
-      </v-btn>
-    </v-btn-toggle>
-    <v-spacer></v-spacer>
+  <v-app-bar app :scroll-behavior="pageTitle == 'index' ? 'hide inverted' : 'none'">
+    <v-container fluid class="d-flex justify-center">
+      <v-btn-toggle v-model="pageTitle">
+        <v-btn v-for="  button   in   buttons  " :key="button.value" rounded="xl"
+          :size="smAndDown ? 'x-large' : 'large'" :class="button.textClass" :value="button.value" :to="button.to">
+          <v-icon :icon="button.icon" :size="smAndDown ? 'x-large' : 'large'" />
+          <span v-if="!smAndDown">{{ button.text }}</span>
+        </v-btn>
+      </v-btn-toggle>
+    </v-container>
   </v-app-bar>
 </template>

@@ -1,9 +1,7 @@
 <template>
     <v-app>
-        <v-layout class="rounded rounded-md">
-            <MyHeader />
-            <default-view />
-        </v-layout>
+        <MyHeader />
+        <default-view />
         <MyFooter />
     </v-app>
 </template>
