@@ -57,12 +57,14 @@ export default {
     </v-container>
 
     <v-dialog v-model="isShowedDialog" transition="dialog-top-transition" persistent>
-        <v-card :width="mobile ? '80vw' : '50vw'" class="ma-auto rounded-lg" style="max-width: 720px;">
+        <v-card :width="mobile ? '80vw' : '50vw'" class="ma-auto pa-5 rounded-lg" style="max-width: 720px;">
             <v-card-text class="text-h5 h-75">
                 {{ selectedExperience.content }}
                 <a v-if="selectedExperience.link" :href="selectedExperience.link">{{ selectedExperience.link }}</a>
             </v-card-text>
-            <v-btn color="success" @click="isShowedDialog = false">close</v-btn>
+            <v-card-action class="d-flex justify-center">
+                <v-btn size="x-large" rounded="xl" color="primary" @click="isShowedDialog = false">close</v-btn>
+            </v-card-action>
         </v-card>
     </v-dialog>
 </template>
