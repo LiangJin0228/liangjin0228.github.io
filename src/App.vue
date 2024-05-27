@@ -1,18 +1,16 @@
 <template>
-  <router-view />
+    <v-app>
+        <router-view />
+    </v-app>
 </template>
 
 <style>
-/* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 </style>

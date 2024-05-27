@@ -1,95 +1,9 @@
-<script setup>
-import { reactive } from "vue";
-import { useDisplay } from "vuetify";
-import MyPhoto from "../assets/liangjin-license_photo-removebg-preview.png";
-
-const { smAndDown } = useDisplay();
-const items = reactive([
-    {
-        type: "header",
-        "prepend-avatar": MyPhoto,
-        title: "Tan Liang Jin",
-        subtitle: "liangjin0228@gmailcom",
-    },
-    {
-        "prepend-icon": "mdi-briefcase",
-        title: "工作經歷",
-        value: "experience",
-        targetRef: "experience"
-    },
-    {
-        "prepend-icon": "mdi-account-school",
-        title: "學歷",
-        value: "education",
-        targetRef: "education"
-    },
-    {
-        "prepend-icon": "mdi-tools",
-        title: "專業技能",
-        value: "skill",
-        targetRef: "skill"
-    },
-    {
-        "prepend-icon": "mdi-trophy-award",
-        title: "專案成就",
-        value: "achievements",
-        targetRef: "achievements"
-    },
-    {
-        "prepend-icon": "mdi-file-check",
-        title: "求職條件",
-        value: "requirements",
-        targetRef: "requirements"
-    },
-    {
-        "prepend-icon": "mdi-translate-variant",
-        title: "語文能力",
-        value: "language",
-        targetRef: "language"
-    },
-    {
-        "prepend-icon": "mdi-calendar-blank-multiple",
-        title: "社團活動",
-        value: "societies",
-        targetRef: "societies"
-    },
-]);
-</script>
-
-<!-- 因爲原生的HTML Tag 和 Vuetify 的 Tag 是不一樣的 -->
-<!-- 所以原生的HTML Tag 可以直接用 script setup 的語法糖，但是Vuetify Tag 需要取得 $el -->
-<script>
-export default {
-    methods: {
-        scrollToTarget(refName) {
-            const targetDiv = this.$refs[refName];
-            if (targetDiv) {
-                const targetElement = targetDiv.$el;
-                if (refName === 'scrollContainer') {
-                    targetElement.scrollTo({
-                        top: 0,
-                        left: 0,
-                        behavior: "smooth",
-                    });
-                }
-                else {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start',
-                    });
-                }
-            }
-        },
-    },
-};
-</script>
-
 <template>
-    <v-container>
-        <v-btn @click="scrollToTarget('scrollContainer')" style="right: 2rem; top: 82vh; z-index: 9999" position="fixed"
+    <v-layout>
+        <v-btn @click="scrollToTop" style="right: 2rem; bottom: 10rem; z-index: 9999" position="fixed"
             class="bg-indigo-darken-1" icon="mdi-format-vertical-align-top" size="large">
         </v-btn>
-        <v-navigation-drawer :permanent="!smAndDown" elevation="5">
+        <v-navigation-drawer :permanent="!smAndDown" elevation="5" style="position: fixed; margin-top: 64px;">
             <v-list density="comfortable" nav>
                 <v-list-item rounded="lg" v-for="item in items" :key="item['value']" :type="item['type']"
                     :prepend-avatar="item['prepend-avatar']" :prepend-icon="item['prepend-icon']" :title="item['title']"
@@ -97,12 +11,13 @@ export default {
                     @click="scrollToTarget(item['targetRef'])"></v-list-item>
             </v-list>
         </v-navigation-drawer>
-
-        <v-sheet ref="scrollContainer" style="height: 80vh" class="overflow-auto hide-scrollbar">
+        <v-main ref="scrollContainer">
+            <!-- <v-sheet ref="scrollContainer" style="height: 80vh" class="overflow-auto hide-scrollbar"> -->
             <v-card flat ref="experience">
                 <v-card-title>工作經歷</v-card-title>
                 <v-card class="ma-5">
-                    <v-card-title class="rounded elevation-1 mb-2">Information Resources Department staff</v-card-title>
+                    <v-card-title class="rounded elevation-1 mb-2">Information Resources Department
+                        staff</v-card-title>
                     <v-card-subtitle>Foon Yew High School Johor Bahru(中學教育事業
                         100~500人)</v-card-subtitle>
                     <v-card-text>
@@ -333,6 +248,100 @@ export default {
                     </v-card-text>
                 </v-card>
             </v-card>
-        </v-sheet>
-    </v-container>
+            <!-- </v-sheet> -->
+        </v-main>
+    </v-layout>
 </template>
+
+<script setup>
+import { useDisplay } from "vuetify";
+import MyPhoto from "../assets/liangjin-license_photo-removebg-preview.png";
+
+const { smAndDown } = useDisplay();
+</script>
+
+<script>
+export default {
+    data() {
+        return {
+            items: [
+                {
+                    type: "header",
+                    "prepend-avatar": MyPhoto,
+                    title: "Tan Liang Jin",
+                    subtitle: "liangjin0228@gmailcom",
+                },
+                {
+                    "prepend-icon": "mdi-briefcase",
+                    title: "工作經歷",
+                    value: "experience",
+                    targetRef: "experience"
+                },
+                {
+                    "prepend-icon": "mdi-account-school",
+                    title: "學歷",
+                    value: "education",
+                    targetRef: "education"
+                },
+                {
+                    "prepend-icon": "mdi-tools",
+                    title: "專業技能",
+                    value: "skill",
+                    targetRef: "skill"
+                },
+                {
+                    "prepend-icon": "mdi-trophy-award",
+                    title: "專案成就",
+                    value: "achievements",
+                    targetRef: "achievements"
+                },
+                {
+                    "prepend-icon": "mdi-file-check",
+                    title: "求職條件",
+                    value: "requirements",
+                    targetRef: "requirements"
+                },
+                {
+                    "prepend-icon": "mdi-translate-variant",
+                    title: "語文能力",
+                    value: "language",
+                    targetRef: "language"
+                },
+                {
+                    "prepend-icon": "mdi-calendar-blank-multiple",
+                    title: "社團活動",
+                    value: "societies",
+                    targetRef: "societies"
+                },
+            ],
+        }
+    },
+    methods: {
+        scrollToTarget(refName) {
+            const targetDiv = this.$refs[refName];
+            if (targetDiv) {
+                const targetElement = targetDiv.$el;
+                if (refName === 'scrollContainer') {
+                    targetElement.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: "smooth",
+                    });
+                }
+                else {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    });
+                }
+            }
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    },
+};
+</script>
