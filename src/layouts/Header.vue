@@ -5,7 +5,7 @@
                 <v-btn v-for="button in buttons" :key="button.value" rounded="xl" :class="button.class"
                     :value="button.value" :to="button.to">
                     <v-icon :icon="button.icon" />
-                    <span>{{ button.text }}</span>
+                    <span v-show="mdAndUp">{{ button.text }}</span>
                 </v-btn>
             </v-btn-toggle>
         </v-container>
@@ -13,7 +13,13 @@
 </template>
 
 <script>
+import { useDisplay } from "vuetify";
+
 export default {
+    setup() {
+        const { mdAndUp } = useDisplay();
+        return { mdAndUp };
+    },
     data() {
         return {
             pageTitle: "",
@@ -45,6 +51,13 @@ export default {
                     icon: "mdi-phone-incoming",
                     class: "text-yellow-darken-4",
                     to: "/contact",
+                },
+                {
+                    value: "form",
+                    text: "Form Demo",
+                    icon: "mdi-file-document-edit-outline",
+                    class: "text-purple-darken-4",
+                    to: "/form",
                 },
             ],
         };

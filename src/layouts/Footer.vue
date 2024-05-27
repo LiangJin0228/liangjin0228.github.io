@@ -41,6 +41,10 @@ export default {
                     title: "Contact Me",
                     link: "/contact",
                 },
+                {
+                    title: "Form Demo",
+                    link: "/form",
+                },
             ],
             socialMedias: [
                 {

@@ -1,0 +1,957 @@
+{
+    "form": {
+        "title": "109學年度師資培育教師調查問卷",
+        "description": "敬愛的教育先進您好：教育部為了解師資培育教師的工作現況和意見，特委託國立臺灣師範大學進行「師資培育教師調查」，期望借重您的專業與經驗，並蒐集您對師資培育相關制度或政策規劃與實施的建議與意見，作為師資培育大學辦學回饋，以及政府師資培育政策精進之參考。距離上次師資培育教師調查已經有十年了，過去十年師資培育發展如何？未來又應該注意甚麼？我們深知您十分忙碌，但您20分鐘左右的投入，可以提供各師資培育大學及教育部寶貴的建議，以讓師資培育有更好的發展。懇請您務必撥冗親自填答，切勿由他人代答。若您完整參與本調查，本單位將於調查結束後，提供一份分析摘要給您。本調查屬「第三方調查」，由調查單位負責資料蒐集、處理與分析。調查所蒐集之資料將只做整體分析之用，除非經過您同意，教育部、您的服務學校、以及其他資料使用者將無從知悉或辨識您個人的填答內容，敬請放心填答。資料釋出亦將遵守相關法令規定與倫理規範，確保您個人的資訊安全及隱私權益。若您有任何問題或建議，也請與我們聯絡（E-mail：tes@ntnu.edu.tw；電話：070-1018-8372#14）。非常感謝您的協助，讓我們共同努力，精進師資培育，使臺灣教育環境更優質！主辦單位：教育部師資培育及藝術教育司。執行單位：國立臺灣師範大學教育學系暨教育政策與行政研究所",
+        "pages": [[1, 2, 3, 4, 5, 6]],
+        "nodes": [
+            {
+                "id": 1,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 1,
+                "order_number": 1,
+                "title": "您曾經擔任師資培育單位哪些行政工作？（可複選，請勾選所有符合者）",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "image": "https://i.kym-cdn.com/entries/icons/original/000/046/895/huh_cat.jpg",
+                "configs": [],
+                "nodes_order": [],
+                "rules": {
+                    "is_required": true,
+                    "mutually_exclusive": [
+                        {
+                            "select": [4],
+                            "clear": [1, 2, 3]
+                        }
+                    ]
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "師資培育中心/處/學院主管（正副主任/處長/院長）",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "師資培育中心/處/學院組長",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "師資培育系所主任/所長",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "以上皆無",
+                        "value": 4
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 2,
+                "order_number": 2,
+                "title": "您是否有下列行政工作經驗？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "無",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "有",
+                            "value": 2
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "中央教育行政工作",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "縣市/地方教育行政工作",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "幼兒園、中小學學校行政工作（含兼任）",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "id": 211,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 8,
+                "order_number": 2,
+                "title": "您是否有下列行政工作經驗？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "無",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "有",
+                            "value": 2
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "中央教育行政工作",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "縣市/地方教育行政工作",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "幼兒園、中小學學校行政工作（含兼任）",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "id": 2118,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 9,
+                "order_number": 2,
+                "title": "您是否有下列行政工作經驗？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "無",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "有",
+                            "value": 2
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "中央教育行政工作",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "縣市/地方教育行政工作",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "幼兒園、中小學學校行政工作（含兼任）",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "id": 21,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 2,
+                "order_number": 2,
+                "title": "請問您的相關工作年資？（年資半年以上以一年計，專任、專案與兼任皆計）",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "都沒有",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "3年（含）以內",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "4-10年",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "11-20年",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "21年（含）以上",
+                            "value": 5
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "大專校院任教經驗",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "師資培育專業課程任教經驗",
+                        "value": 2
+                    }
+                ]
+            },
+            {
+                "id": 2118,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 8,
+                "order_number": 2,
+                "title": "請問您的相關工作年資？（年資半年以上以一年計，專任、專案與兼任皆計）",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "都沒有",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "3年（含）以內",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "4-10年",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "11-20年",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "21年（含）以上",
+                            "value": 5
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "大專校院任教經驗",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "師資培育專業課程任教經驗",
+                        "value": 2
+                    }
+                ]
+            },
+            {
+                "id": 211875,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 9,
+                "order_number": 2,
+                "title": "請問您的相關工作年資？（年資半年以上以一年計，專任、專案與兼任皆計）",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "都沒有",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "3年（含）以內",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "4-10年",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "11-20年",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "21年（含）以上",
+                            "value": 5
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "大專校院任教經驗",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "師資培育專業課程任教經驗",
+                        "value": 2
+                    }
+                ]
+            },
+            {
+                "id": 22,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 2,
+                "order_number": 2,
+                "title": "下列期間，您每週任教師資培育專業課程（不含非師培課程）的教學時數為何？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "0小時",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "1-2小時",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "3-4小時",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "5-6小時",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "7-8小時",
+                            "value": 5
+                        },
+                        {
+                            "id": 6,
+                            "title": "9-10小時",
+                            "value": 6
+                        },
+                        {
+                            "id": 7,
+                            "title": "11-12小時",
+                            "value": 7
+                        },
+                        {
+                            "id": 8,
+                            "title": "13小時（含）以上",
+                            "value": 8
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "108學年度暑期",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "109學年度上學期",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "109學年度下學期",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "id": 2219,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 8,
+                "order_number": 2,
+                "title": "下列期間，您每週任教師資培育專業課程（不含非師培課程）的教學時數為何？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "0小時",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "1-2小時",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "3-4小時",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "5-6小時",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "7-8小時",
+                            "value": 5
+                        },
+                        {
+                            "id": 6,
+                            "title": "9-10小時",
+                            "value": 6
+                        },
+                        {
+                            "id": 7,
+                            "title": "11-12小時",
+                            "value": 7
+                        },
+                        {
+                            "id": 8,
+                            "title": "13小時（含）以上",
+                            "value": 8
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "108學年度暑期",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "109學年度上學期",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "109學年度下學期",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "id": 22195,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 9,
+                "order_number": 2,
+                "title": "下列期間，您每週任教師資培育專業課程（不含非師培課程）的教學時數為何？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "0小時",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "1-2小時",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "3-4小時",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "5-6小時",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "7-8小時",
+                            "value": 5
+                        },
+                        {
+                            "id": 6,
+                            "title": "9-10小時",
+                            "value": 6
+                        },
+                        {
+                            "id": 7,
+                            "title": "11-12小時",
+                            "value": 7
+                        },
+                        {
+                            "id": 8,
+                            "title": "13小時（含）以上",
+                            "value": 8
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "108學年度暑期",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "109學年度上學期",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "109學年度下學期",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "id": 22,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 2,
+                "order_number": 2,
+                "title": "根據您開課屬性，教授師資培育專業課程時，您覺得自己應用下列教學策略的「成效」為何？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "未曾使用",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "非常不理想",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "不理想",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "理想",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "非常理想",
+                            "value": 5
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "講述法",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "引導學生探究實作與問題解決",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "引導學生自主學習",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "將課程與實務或應用結合",
+                        "value": 4
+                    },
+                    {
+                        "id": 5,
+                        "title": "實施跨領域主題/專題/議題課程統整與教學",
+                        "value": 5
+                    },
+                    {
+                        "id": 6,
+                        "title": "運用資訊科技與數位教材進行教學（學習平台）",
+                        "value": 6
+                    },
+                    {
+                        "id": 7,
+                        "title": "進行分組合作學習",
+                        "value": 7
+                    },
+                    {
+                        "id": 8,
+                        "title": "進行實例研討與分析",
+                        "value": 8
+                    },
+                    {
+                        "id": 9,
+                        "title": "實地參訪、見習、試教",
+                        "value": 9
+                    },
+                    {
+                        "id": 10,
+                        "title": "運用多元評量",
+                        "value": 10
+                    },
+                    {
+                        "id": 11,
+                        "title": "將教師資格考試或教師甄試考題融入教學",
+                        "value": 11
+                    }
+                ]
+            },
+            {
+                "id": 2245,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 8,
+                "order_number": 2,
+                "title": "根據您開課屬性，教授師資培育專業課程時，您覺得自己應用下列教學策略的「成效」為何？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "未曾使用",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "非常不理想",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "不理想",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "理想",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "非常理想",
+                            "value": 5
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "講述法",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "引導學生探究實作與問題解決",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "引導學生自主學習",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "將課程與實務或應用結合",
+                        "value": 4
+                    },
+                    {
+                        "id": 5,
+                        "title": "實施跨領域主題/專題/議題課程統整與教學",
+                        "value": 5
+                    },
+                    {
+                        "id": 6,
+                        "title": "運用資訊科技與數位教材進行教學（學習平台）",
+                        "value": 6
+                    },
+                    {
+                        "id": 7,
+                        "title": "進行分組合作學習",
+                        "value": 7
+                    },
+                    {
+                        "id": 8,
+                        "title": "進行實例研討與分析",
+                        "value": 8
+                    },
+                    {
+                        "id": 9,
+                        "title": "實地參訪、見習、試教",
+                        "value": 9
+                    },
+                    {
+                        "id": 10,
+                        "title": "運用多元評量",
+                        "value": 10
+                    },
+                    {
+                        "id": 11,
+                        "title": "將教師資格考試或教師甄試考題融入教學",
+                        "value": 11
+                    }
+                ]
+            },
+            {
+                "id": 22445365,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 9,
+                "order_number": 2,
+                "title": "根據您開課屬性，教授師資培育專業課程時，您覺得自己應用下列教學策略的「成效」為何？",
+                "configs": {
+                    "scales": [
+                        {
+                            "id": 1,
+                            "title": "未曾使用",
+                            "value": 1
+                        },
+                        {
+                            "id": 2,
+                            "title": "非常不理想",
+                            "value": 2
+                        },
+                        {
+                            "id": 3,
+                            "title": "不理想",
+                            "value": 3
+                        },
+                        {
+                            "id": 4,
+                            "title": "理想",
+                            "value": 4
+                        },
+                        {
+                            "id": 5,
+                            "title": "非常理想",
+                            "value": 5
+                        }
+                    ]
+                },
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "講述法",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "引導學生探究實作與問題解決",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "引導學生自主學習",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "將課程與實務或應用結合",
+                        "value": 4
+                    },
+                    {
+                        "id": 5,
+                        "title": "實施跨領域主題/專題/議題課程統整與教學",
+                        "value": 5
+                    },
+                    {
+                        "id": 6,
+                        "title": "運用資訊科技與數位教材進行教學（學習平台）",
+                        "value": 6
+                    },
+                    {
+                        "id": 7,
+                        "title": "進行分組合作學習",
+                        "value": 7
+                    },
+                    {
+                        "id": 8,
+                        "title": "進行實例研討與分析",
+                        "value": 8
+                    },
+                    {
+                        "id": 9,
+                        "title": "實地參訪、見習、試教",
+                        "value": 9
+                    },
+                    {
+                        "id": 10,
+                        "title": "運用多元評量",
+                        "value": 10
+                    },
+                    {
+                        "id": 11,
+                        "title": "將教師資格考試或教師甄試考題融入教學",
+                        "value": 11
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 3,
+                "order_number": 3,
+                "title": "請問您對服務師資培育單位（中心、處、系所、學院）有何意見與建議？",
+                "configs": {},
+                "rules": {
+                    "is_required": true
+                },
+                "options": []
+            },
+            {
+                "id": 4,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 4,
+                "order_number": 4,
+                "title": "過去三年（107-109）您協助中央、地方（縣市或學校）的「教育輔導團」或幼兒園、中小學「教師增能研習或專業發展」的情況為何(含主辦、協助推動、擔任講師等)？",
+                "configs": {},
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "完全沒有",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "投入不多",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "有些投入",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "非常投入",
+                        "value": 4
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 5,
+                "order_number": 5,
+                "title": "您每週實際授課多少節？",
+                "configs": {},
+                "rules": {
+                    "is_required": true
+                },
+                "options": [
+                    {
+                        "id": 1,
+                        "title": "1",
+                        "value": 1
+                    },
+                    {
+                        "id": 2,
+                        "title": "2",
+                        "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "3",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "4",
+                        "value": 4
+                    },
+                    {
+                        "id": 5,
+                        "title": "5(含)以上",
+                        "value": 5
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "form_id": 1,
+                "parent_id": 1,
+                "parent_type": "App\\Models\\Form",
+                "type_id": 6,
+                "order_number": 6,
+                "title": "請說明___________，20字以內",
+                "configs": {},
+                "rules": {
+                    "is_required": true
+                },
+                "options": []
+            }
+        ]
+    }
+}
