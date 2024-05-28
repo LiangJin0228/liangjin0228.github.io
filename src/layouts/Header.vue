@@ -4,7 +4,7 @@
             <v-btn-toggle v-model="pageTitle">
                 <v-btn v-for="button in buttons" :key="button.value" rounded="xl" :class="button.class"
                     :value="button.value" :to="button.to">
-                    <v-icon :icon="button.icon" />
+                    <v-icon :icon="button.icon" size="x-large" />
                     <span v-show="mdAndUp">{{ button.text }}</span>
                 </v-btn>
             </v-btn-toggle>

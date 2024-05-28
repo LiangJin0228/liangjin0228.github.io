@@ -1,5 +1,5 @@
 <template>
-    <v-footer class="d-flex flex-column bg-grey-lighten-1" style="z-index: 999999;">
+    <v-footer absolute class="d-flex flex-column bg-grey-lighten-1" style="z-index: 999;">
         <v-container>
             <v-row justify="center" no-gutters>
                 <v-btn v-for="page in pages" :key="page.title" color="white" variant="text" class="mx-2" rounded="xl"

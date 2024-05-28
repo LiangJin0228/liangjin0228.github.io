@@ -15,7 +15,7 @@
     </v-hover>
 
     <v-dialog v-model="isShowDetails" transition="dialog-top-transition" persistent>
-        <v-card class="ma-auto rounded-xl" width="50vw">
+        <v-card class="ma-auto rounded-xl" width="90vw" style="z-index: 9999999;">
             <v-card-title class="text-wrap">{{ experience.content }}</v-card-title>
             <v-card-text v-if="experience.link">
                 <a :href="experience.link" target="_blank" class="text-green-darken-4" style="text-decoration: none;">{{

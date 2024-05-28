@@ -1,8 +1,8 @@
 <template>
+    <v-btn @click="scrollToTop" style="right: 2rem; bottom: 2rem; z-index: 999999" position="fixed"
+        class="bg-indigo-darken-1" icon="mdi-format-vertical-align-top" size="large">
+    </v-btn>
     <v-layout>
-        <v-btn @click="scrollToTop" style="right: 2rem; bottom: 10rem; z-index: 9999" position="fixed"
-            class="bg-indigo-darken-1" icon="mdi-format-vertical-align-top" size="large">
-        </v-btn>
         <v-navigation-drawer :permanent="!smAndDown" elevation="5" style="position: fixed; margin-top: 64px;">
             <v-list density="comfortable" nav>
                 <v-list-item rounded="lg" v-for="item in items" :key="item['value']" :type="item['type']"
@@ -248,7 +248,6 @@
                     </v-card-text>
                 </v-card>
             </v-card>
-            <!-- </v-sheet> -->
         </v-main>
     </v-layout>
 </template>
