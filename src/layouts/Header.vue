@@ -24,34 +24,34 @@ export default {
         return {
             pageTitle: "",
             buttons: [
-                {
-                    value: "index",
-                    text: "Home",
-                    icon: "mdi-home",
-                    class: "text-green",
-                    to: "/index",
-                },
-                {
-                    value: "resume",
-                    text: "Resume",
-                    icon: "mdi-file-account",
-                    class: "text-brown-darken-1",
-                    to: "/resume",
-                },
-                {
-                    value: "about",
-                    text: "About Me",
-                    icon: "mdi-information",
-                    class: "text-blue",
-                    to: "/about",
-                },
-                {
-                    value: "contact",
-                    text: "Contact Me",
-                    icon: "mdi-phone-incoming",
-                    class: "text-yellow-darken-4",
-                    to: "/contact",
-                },
+                // {
+                //     value: "index",
+                //     text: "Home",
+                //     icon: "mdi-home",
+                //     class: "text-green",
+                //     to: "/index",
+                // },
+                // {
+                //     value: "resume",
+                //     text: "Resume",
+                //     icon: "mdi-file-account",
+                //     class: "text-brown-darken-1",
+                //     to: "/resume",
+                // },
+                // {
+                //     value: "about",
+                //     text: "About Me",
+                //     icon: "mdi-information",
+                //     class: "text-blue",
+                //     to: "/about",
+                // },
+                // {
+                //     value: "contact",
+                //     text: "Contact Me",
+                //     icon: "mdi-phone-incoming",
+                //     class: "text-yellow-darken-4",
+                //     to: "/contact",
+                // },
                 {
                     value: "form",
                     text: "Form Demo",

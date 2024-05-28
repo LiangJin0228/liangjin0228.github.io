@@ -1,14 +1,14 @@
 <template>
     <v-footer absolute class="d-flex flex-column bg-grey-lighten-1" style="z-index: 999;">
         <v-container>
-            <v-row justify="center" no-gutters>
+            <!-- <v-row justify="center" no-gutters>
                 <v-btn v-for="page in pages" :key="page.title" color="white" variant="text" class="mx-2" rounded="xl"
                     :to="page.link">{{ page.title }}</v-btn>
             </v-row>
             <v-row justify="center" no-gutters>
                 <v-btn v-for="media in socialMedias" :key="media" class="mx-4" :icon="media.icon" target="_blank"
                     :href="media.link" variant="text"></v-btn>
-            </v-row>
+            </v-row> -->
             <v-row justify="center" class="text-center" no-gutters>
                 <strong>
                     All contents of this site, unless otherwise noted, are
