@@ -217,7 +217,7 @@ export default {
         //     this.loading = false;
         //     this.form = response.data.form;
         // });
-        if (this.width) {
+        if (this.width <= 1440) {
             let lastKnownScrollPosition = 0;
             let fixedCards = document.querySelectorAll(".fixed-title");
             let firstCard = fixedCards[0];

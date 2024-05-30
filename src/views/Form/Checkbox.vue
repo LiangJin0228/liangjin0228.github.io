@@ -1,5 +1,5 @@
 <template>
-    <v-card hover variant="text" class="cursor-default">
+    <v-card :hover="width >= 1440" variant="text" class="cursor-default">
         <v-card-title class="text-wrap"> {{ newPrependOrderNumber }}. {{ node.title }} </v-card-title>
         <v-card-text>
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
@@ -20,16 +20,14 @@
                 </template>
             </v-form>
         </v-card-text>
-
-        <v-container fluid v-if="node.nodes">
-            <Node v-for="n in node.nodes" :key="n.id" @answerChanged="answerChanged" @anserValidated="anserValidated"
-                :validateFormTimes="validateFormTimes" :prependOrderNumber="newPrependOrderNumber" :node="n" />
-        </v-container>
     </v-card>
 </template>
 
 <script setup>
+import { useDisplay } from "vuetify";
 import Node from "./Node.vue";
+
+const { width } = useDisplay();
 </script>
 
 <script>
