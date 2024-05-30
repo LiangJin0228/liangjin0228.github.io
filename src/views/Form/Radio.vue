@@ -5,11 +5,19 @@
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">
-                <v-radio-group>
-                    <template v-for="option in node.options" :key="option.id">
-                        <v-radio :label="option.title" :value="option.value"></v-radio>
-                    </template>
-                </v-radio-group>
+                <template v-for="option in node.options" :key="option.id">
+                    <v-container fluid class="ma-0 pa-0">
+                        <v-radio @click="selectedRadio = option.value" :model-value="selectedRadio"
+                            :label="option.title" :value="option.value"></v-radio>
+
+                        <v-container v-if="option.nodes && selectedRadio === option.value" fluid class="ma-0 pa-0">
+                            <Node v-for="n in option.nodes" :key="n.id" @answerChanged="answerChanged"
+                                @anserValidated="anserValidated" :validateFormTimes="validateFormTimes"
+                                :prependOrderNumber="newPrependOrderNumber" :node="n" />
+                        </v-container>
+                    </v-container>
+                </template>
+
             </v-form>
         </v-card-text>
 
@@ -50,7 +58,7 @@ export default {
     data() {
         return {
             valid: false,
-            selected: null,
+            selectedRadio: null,
             rules: [],
         };
     },
@@ -113,10 +121,6 @@ export default {
         },
     },
     watch: {
-        selected() {
-            this.mutually_exclusive(this.node.rules.mutually_exclusive);
-            this.answerChanged();
-        },
         validateFormTimes() {
             this.checkAnswer();
         },

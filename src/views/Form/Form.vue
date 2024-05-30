@@ -3,8 +3,19 @@
         style="background-color: #1d2630">
         <LoadingNode />
     </v-overlay>
+    <v-app-bar app v-if="floatTitle.show" height="fit-content">
+        <v-app-bar-title class="ma-0 pa-5 pb-1">
+            <span :class="{ 'text-wrap': floatTitle.expand }">{{ floatTitle.content }}</span> <br>
 
-    <v-card v-if="form">
+            <v-btn block @click="floatTitle.expand = !floatTitle.expand">
+                <v-icon>
+                    {{ floatTitle.expand ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+                </v-icon>
+            </v-btn>
+        </v-app-bar-title>
+    </v-app-bar>
+
+    <v-card v-if="form" flat :max-width="width >= 1440 ? '1280' : '720'" class="ma-auto">
         <!-- <v-progress-linear height="10" color="orange" :model-value="progress" stream></v-progress-linear> -->
 
         <template v-if="page == 1">
@@ -13,8 +24,8 @@
         </template>
 
         <v-container fluid class="pt-0" id="listWithHandle">
-            <Node class="my-5" v-for="node in form.nodes" :key="node.id" :prependOrderNumber="node.prependOrderNumber"
-                :validateFormTimes="validateFormTimes" :node="node" />
+            <Node class="my-5 fixed-title" v-for="node in form.nodes" :key="node.id"
+                :prependOrderNumber="node.prependOrderNumber" :validateFormTimes="validateFormTimes" :node="node" />
         </v-container>
 
         <v-card-actions>
@@ -39,6 +50,7 @@
 </template>
 
 <script>
+import { useDisplay } from "vuetify";
 import fakedata from "./fakeData";
 // import axios from "axios";
 // import Sortable, { AutoScroll } from "sortablejs/modular/sortable.core.esm.js";
@@ -46,12 +58,21 @@ import LoadingNode from "../Loading.vue";
 import Node from "./Node.vue";
 
 export default {
+    setup() {
+        const { width } = useDisplay();
+        return { width };
+    },
     components: {
         Node,
         LoadingNode,
     },
     data() {
         return {
+            floatTitle: {
+                content: "",
+                show: false,
+                expand: false,
+            },
             snackbar: {
                 text: "",
                 show: false,
@@ -196,6 +217,28 @@ export default {
         //     this.loading = false;
         //     this.form = response.data.form;
         // });
+        if (this.width) {
+            let lastKnownScrollPosition = 0;
+            let fixedCards = document.querySelectorAll(".fixed-title");
+            let firstCard = fixedCards[0];
+
+            document.addEventListener("scroll", () => {
+                lastKnownScrollPosition = window.scrollY;
+                fixedCards.forEach((card) => {
+                    let cardBottom = card.offsetTop + card.offsetHeight;
+                    let content = card.children[1].innerHTML;
+                    if (card.offsetHeight > 800 && card.offsetTop <= lastKnownScrollPosition && lastKnownScrollPosition <= cardBottom - 200) {
+                        this.floatTitle.content = content;
+                        this.floatTitle.show = true;
+                    } else if (lastKnownScrollPosition > cardBottom - 200) {
+                        this.floatTitle.show = false;
+                    }
+                });
+                if (lastKnownScrollPosition < firstCard.offsetTop) {
+                    this.floatTitle.show = false;
+                }
+            });
+        }
     },
 };
 </script>

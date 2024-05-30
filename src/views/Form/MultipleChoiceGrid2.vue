@@ -6,27 +6,31 @@
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
 
             <v-form ref="form" v-model="valid">
-                <v-container v-if="!mobile" fluid class="border-xl">
+                <v-container v-if="width >= 1440" fluid>
                     <v-row class="bg-green py-1">
-                        <v-col :offset="node.configs.scales.length >= 8 ? 5 : 7"
-                            :lg="node.configs.scales.length >= 8 ? 7 : 5">
+                        <v-col :offset="node.configs.scales.length >= 8 ? 5 : node.configs.scales.length <= 3 ? 10 : 8"
+                            :lg="node.configs.scales.length >= 8 ? 7 : node.configs.scales.length <= 3 ? 2 : 4">
                             <v-radio-group inline hide-details="auto">
                                 <v-row class="flex-nowrap">
-                                    <v-col v-for="scale in node.configs.scales" class="text-center">
+                                    <v-col v-for="scale in node.configs.scales" :key="scale.id" class="text-center">
                                         <v-container class="pa-0">{{ scale.title }}</v-container>
                                     </v-col>
                                 </v-row>
                             </v-radio-group>
                         </v-col>
                     </v-row>
-                    <v-row v-for="(option, index) in node.options" :class="{ 'bg-green-lighten-5': index % 2 == 0 }">
-                        <v-col cols="12" :lg="node.configs.scales.length >= 8 ? 5 : 7" class="text-subtitle-1">
+                    <v-row v-for="(option, index) in node.options" :key="index"
+                        :class="{ 'bg-green-lighten-5': index % 2 == 0 }">
+                        <v-col cols="12"
+                            :lg="node.configs.scales.length >= 8 ? 5 : node.configs.scales.length <= 3 ? 10 : 8"
+                            class="text-subtitle-1">
                             ({{ index + 1 }}) {{ option.title }}
                         </v-col>
-                        <v-col cols="12" :lg="node.configs.scales.length >= 8 ? 7 : 5">
+                        <v-col cols="12"
+                            :lg="node.configs.scales.length >= 8 ? 7 : node.configs.scales.length <= 3 ? 2 : 4">
                             <v-radio-group inline v-model="radios[index]" :rules="rules" hide-details="auto">
                                 <v-row class="flex-nowrap">
-                                    <v-col v-for="scale in node.configs.scales" class="text-center">
+                                    <v-col v-for="scale in node.configs.scales" :key="scale.value" class="text-center">
                                         <v-radio :value="scale.value"></v-radio>
                                     </v-col>
                                 </v-row>
@@ -36,13 +40,13 @@
                 </v-container>
 
                 <v-container v-else fluid class="border bg-green-lighten-5">
-                    <v-row v-for="(option, index) in node.options">
+                    <v-row v-for="(option, index) in node.options" :key="index">
                         <v-col cols="12" class="text-subtitle-1">
                             ({{ index + 1 }}) {{ option.title }}
                         </v-col>
                         <v-col cols="12">
                             <v-radio-group v-model="radios[index]" :rules="rules" hide-details="auto">
-                                <v-radio v-for="scale in node.configs.scales" :label="scale.title"
+                                <v-radio v-for="scale in node.configs.scales" :key="scale.value" :label="scale.title"
                                     :value="scale.value"></v-radio>
                             </v-radio-group>
                         </v-col>
@@ -63,7 +67,7 @@
 import { useDisplay } from "vuetify";
 import Node from "./Node.vue";
 
-const { mobile } = useDisplay();
+const { width } = useDisplay();
 </script>
 
 <script>

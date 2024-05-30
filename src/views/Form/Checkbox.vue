@@ -5,19 +5,25 @@
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">
-                <v-checkbox v-for="(option, index) in node.options" v-model="selected" :key="option.value"
-                    :label="option.title" :rules="rules" :value="option.value" density="compact">
-                    <template #message="{ message }">
-                        <span v-if="index == node.options.length - 1" class="text-subtitle-1">{{ message }}</span>
-                    </template>
-                </v-checkbox>
+                <template v-for="(option, index) in node.options" :key="option.id">
+                    <v-container fluid class="ma-0 pa-0">
+                        <v-checkbox :hide-details="index !== node.options.length - 1" v-model="selected"
+                            :label="option.title" :rules="rules" :value="option.value" density="compact">
+                        </v-checkbox>
+
+                        <v-container v-if="option.nodes && selected.includes(option.value)" fluid class="ma-0 pa-0">
+                            <Node v-for="n in option.nodes" :key="n.id" @answerChanged="answerChanged"
+                                @anserValidated="anserValidated" :validateFormTimes="validateFormTimes"
+                                :prependOrderNumber="newPrependOrderNumber" :node="n" />
+                        </v-container>
+                    </v-container>
+                </template>
             </v-form>
         </v-card-text>
 
         <v-container fluid v-if="node.nodes">
             <Node v-for="n in node.nodes" :key="n.id" @answerChanged="answerChanged" @anserValidated="anserValidated"
-                :validateFormTimes="validateFormTimes" :settings="settings" :prependOrderNumber="newPrependOrderNumber"
-                :node="n" />
+                :validateFormTimes="validateFormTimes" :prependOrderNumber="newPrependOrderNumber" :node="n" />
         </v-container>
     </v-card>
 </template>
