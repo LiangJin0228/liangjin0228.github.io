@@ -43,10 +43,12 @@ export default {
         return {
             valid: false,
             answer: null,
-            rules: [],
         };
     },
     computed: {
+        rules() {
+            return this.node.rules;
+        },
         newPrependOrderNumber() {
             if (this.prependOrderNumber && this.prependOrderNumber !== 0) {
                 return `${this.prependOrderNumber}-${this.node.order_number}`;
@@ -93,12 +95,6 @@ export default {
         },
     },
     mounted() {
-        let rules = this.node.rules;
-        for (let rule in rules) {
-            if (rule && rule !== "mutually_exclusive") {
-                this.rules.push(this.$options.methods[rule]);
-            }
-        }
     },
 };
 </script>

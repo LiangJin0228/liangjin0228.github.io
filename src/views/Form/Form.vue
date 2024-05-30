@@ -1,13 +1,10 @@
 <template>
-    <v-overlay v-model="loading" class="d-flex justify-center align-center loading-overlay"
-        style="background-color: #1d2630">
-        <LoadingNode />
-    </v-overlay>
+    <LoadingNode :loading="loading" />
+
     <v-app-bar app v-if="floatTitle.show" height="fit-content">
         <v-app-bar-title class="ma-0 pa-5 pb-1">
             <span :class="{ 'text-wrap': floatTitle.expand }">{{ floatTitle.content }}</span> <br>
-
-            <v-btn block @click="floatTitle.expand = !floatTitle.expand">
+            <v-btn block rounded class="ma-auto" @click="floatTitle.expand = !floatTitle.expand">
                 <v-icon>
                     {{ floatTitle.expand ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
                 </v-icon>

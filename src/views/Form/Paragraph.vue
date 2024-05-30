@@ -95,9 +95,7 @@ export default {
     mounted() {
         let rules = this.node.rules;
         for (let rule in rules) {
-            if (rule && rule !== "mutually_exclusive") {
-                this.rules.push(this.$options.methods[rule]);
-            }
+            this.rules.push(this.$options.methods[rule]);
         }
     },
 };

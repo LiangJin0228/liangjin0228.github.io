@@ -39,13 +39,13 @@
                     </v-row>
                 </v-container>
 
-                <v-container v-else fluid class="border bg-green-lighten-5">
+                <v-container v-else fluid class="rounded-xl border bg-green-lighten-5">
                     <v-row v-for="(option, index) in node.options" :key="index">
                         <v-col cols="12" class="text-subtitle-1">
                             ({{ index + 1 }}) {{ option.title }}
                         </v-col>
                         <v-col cols="12">
-                            <v-radio-group v-model="radios[index]" :rules="rules" inline hide-details="auto">
+                            <v-radio-group v-model="radios[index]" :rules="rules" hide-details="auto">
                                 <v-radio v-for="scale in node.configs.scales" :key="scale.value" :label="scale.title"
                                     :value="scale.value"></v-radio>
                             </v-radio-group>

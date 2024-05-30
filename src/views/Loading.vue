@@ -1,13 +1,28 @@
 <template>
-    <div class="spinner-box">
-        <div class="configure-border-1">
-            <div class="configure-core"></div>
+    <v-overlay :model-value="loading" class="d-flex justify-center align-center loading-overlay"
+        style="background-color: #1d2630">
+        <div class="spinner-box">
+            <div class="configure-border-1">
+                <div class="configure-core"></div>
+            </div>
+            <div class="configure-border-2">
+                <div class="configure-core"></div>
+            </div>
         </div>
-        <div class="configure-border-2">
-            <div class="configure-core"></div>
-        </div>
-    </div>
+    </v-overlay>
 </template>
+
+<script>
+export default {
+    props: {
+        loading: {
+            type: Boolean,
+            required: true,
+            default: true,
+        },
+    },
+};
+</script>
 
 <style scoped>
 .spinner-box {

@@ -39,7 +39,8 @@
                     </v-row>
                 </v-container>
 
-                <v-container v-else fluid class="border bg-green-lighten-5" style="width: inherit; overflow-x: auto;">
+                <v-container v-else fluid class="rounded-xl border bg-green-lighten-5"
+                    style="width: inherit; overflow-x: auto;">
                     <v-row v-for="(option, index) in node.options" :key="index"
                         style="width: inherit; overflow-x: auto;">
                         <v-col cols="12" class="text-subtitle-1">
@@ -51,8 +52,10 @@
                                     <v-radio-group inline hide-details="auto">
                                         <v-row class="flex-nowrap">
                                             <v-col v-for="scale in node.configs.scales" :key="scale.value"
-                                                class="bg-green text-center border pa-0">
-                                                <v-container class="pa-0">{{ scale.title }}</v-container>
+                                                class="rounded-t-lg bg-green text-center border pa-1">
+                                                <v-container class="text-wrap ma-0 pa-0">
+                                                    {{ scale.title }}
+                                                </v-container>
                                                 <v-radio style="visibility: hidden;"></v-radio>
                                             </v-col>
                                         </v-row>
@@ -63,7 +66,7 @@
                                     <v-radio-group inline v-model="radios[index]" :rules="rules" hide-details="auto">
                                         <v-row class="flex-nowrap">
                                             <v-col v-for="scale in node.configs.scales" :key="scale.value"
-                                                class="text-center border pa-0">
+                                                class="rounded-b-lg text-center border pa-1 mb-1">
                                                 <v-radio :value="scale.value"></v-radio>
                                             </v-col>
                                         </v-row>
