@@ -1,11 +1,8 @@
 {
     "form": {
-        "title": "109學年度師資培育教師調查問卷",
-        "description": "敬愛的教育先進您好：教育部為了解師資培育教師的工作現況和意見，特委託國立臺灣師範大學進行「師資培育教師調查」，期望借重您的專業與經驗，並蒐集您對師資培育相關制度或政策規劃與實施的建議與意見，作為師資培育大學辦學回饋，以及政府師資培育政策精進之參考。距離上次師資培育教師調查已經有十年了，過去十年師資培育發展如何？未來又應該注意甚麼？我們深知您十分忙碌，但您20分鐘左右的投入，可以提供各師資培育大學及教育部寶貴的建議，以讓師資培育有更好的發展。懇請您務必撥冗親自填答，切勿由他人代答。若您完整參與本調查，本單位將於調查結束後，提供一份分析摘要給您。本調查屬「第三方調查」，由調查單位負責資料蒐集、處理與分析。調查所蒐集之資料將只做整體分析之用，除非經過您同意，教育部、您的服務學校、以及其他資料使用者將無從知悉或辨識您個人的填答內容，敬請放心填答。資料釋出亦將遵守相關法令規定與倫理規範，確保您個人的資訊安全及隱私權益。若您有任何問題或建議，也請與我們聯絡(E-mail：tes@ntnu.edu.tw；電話：070-1018-8372#14)。非常感謝您的協助，讓我們共同努力，精進師資培育，使臺灣教育環境更優質！主辦單位：教育部師資培育及藝術教育司。執行單位：國立臺灣師範大學教育學系暨教育政策與行政研究所",
-        "pages": [
-            [1, 2, 3, 4, 5],
-            [6, 7, 8]
-        ],
+        "title": "問卷填答頁面測試",
+        "description": "爲改善用戶填答體驗, 以下為各種題型的測試, 請填寫完整, 謝謝!",
+        "pages": [[1], [2, 3, 4, 5], [6, 7, 8]],
         "nodes": [
             {
                 "id": 1,
@@ -15,10 +12,16 @@
                 "type_id": 1,
                 "order_number": 1,
                 "title": "這是簡答題(ShortAnswer)",
-                "configs": {},
+                "configs": {
+                    "label": "請填寫您的姓名",
+                    "clearable": true,
+                    "placeholder": "eg. 王X明",
+                    "readonly": false
+                },
                 "rules": {
-                    "is_required": true,
-                    "max_length": 100
+                    "required": true,
+                    "min": 2,
+                    "max": 20
                 }
             },
             {
@@ -29,9 +32,15 @@
                 "type_id": 2,
                 "order_number": 2,
                 "title": "這是問答題(Paragraph)",
-                "configs": {},
+                "configs": {
+                    "label": "請輸入您的意見",
+                    "clearable": true,
+                    "placeholder": "字數限制500字",
+                    "readonly": false
+                },
                 "rules": {
-                    "is_required": true
+                    "required": false,
+                    "max": 500
                 }
             },
             {
@@ -42,15 +51,59 @@
                 "type_id": 3,
                 "order_number": 3,
                 "title": "這是選擇題(Select)",
-                "configs": {},
+                "configs": {
+                    "clearable": true,
+                    "readonly": false
+                },
                 "rules": {
-                    "is_required": true
+                    "required": true
                 },
                 "options": [
                     {
                         "id": 1,
                         "title": "1",
-                        "value": 1
+                        "value": 1,
+                        "nodes": [
+                            {
+                                "id": 1,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 1,
+                                "order_number": 1,
+                                "title": "這是簡答題(ShortAnswer)",
+                                "configs": {
+                                    "label": "請填寫您的姓名",
+                                    "clearable": true,
+                                    "placeholder": "eg. 王X明",
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true,
+                                    "min": 2,
+                                    "max": 20
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 2,
+                                "order_number": 2,
+                                "title": "這是問答題(Paragraph)",
+                                "configs": {
+                                    "label": "請輸入您的意見",
+                                    "clearable": true,
+                                    "placeholder": "字數限制500字",
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": false,
+                                    "max": 500
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": 2,
@@ -82,20 +135,104 @@
                 "type_id": 4,
                 "order_number": 4,
                 "title": "這是單選題(Radio)",
-                "configs": {},
+                "configs": {
+                    "readonly": false
+                },
                 "rules": {
-                    "is_required": true
+                    "required": true
                 },
                 "options": [
                     {
                         "id": 1,
                         "title": "完全沒有",
-                        "value": 1
+                        "value": 1,
+                        "nodes": [
+                            {
+                                "id": 1,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 1,
+                                "order_number": 1,
+                                "title": "這是簡答題(ShortAnswer)",
+                                "configs": {
+                                    "label": "請填寫您的姓名",
+                                    "clearable": true,
+                                    "placeholder": "eg. 王X明",
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true,
+                                    "min": 2,
+                                    "max": 20
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 2,
+                                "order_number": 2,
+                                "title": "這是問答題(Paragraph)",
+                                "configs": {
+                                    "label": "請輸入您的意見",
+                                    "clearable": true,
+                                    "placeholder": "字數限制500字",
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": false,
+                                    "max": 500
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": 2,
                         "title": "投入不多",
-                        "value": 2
+                        "value": 2,
+                        "nodes": [
+                            {
+                                "id": 1,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 1,
+                                "order_number": 1,
+                                "title": "這是簡答題(ShortAnswer)",
+                                "configs": {
+                                    "label": "請填寫您的姓名",
+                                    "clearable": true,
+                                    "placeholder": "eg. 王X明",
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true,
+                                    "min": 2,
+                                    "max": 20
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 2,
+                                "order_number": 2,
+                                "title": "這是問答題(Paragraph)",
+                                "configs": {
+                                    "label": "請輸入您的意見",
+                                    "clearable": true,
+                                    "placeholder": "字數限制500字",
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": false,
+                                    "max": 500
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": 3,
@@ -117,9 +254,11 @@
                 "type_id": 5,
                 "order_number": 5,
                 "title": "這是多選題(Checkbox)",
-                "configs": [],
+                "configs": {
+                    "readonly": false
+                },
                 "rules": {
-                    "is_required": true,
+                    "required": true,
                     "mutually_exclusive": [
                         {
                             "select": [4],
@@ -137,7 +276,7 @@
                                 "id": 1,
                                 "form_id": 1,
                                 "parent_id": 1,
-                                "parent_type": "App\\Models\\Form",
+                                "parent_type": "App\\Models\\Node",
                                 "type_id": 1,
                                 "order_number": 1,
                                 "title": "這是簡答題(ShortAnswer)",
@@ -151,7 +290,7 @@
                                 "id": 2,
                                 "form_id": 1,
                                 "parent_id": 1,
-                                "parent_type": "App\\Models\\Form",
+                                "parent_type": "App\\Models\\Node",
                                 "type_id": 2,
                                 "order_number": 2,
                                 "title": "這是問答題(Paragraph)",
@@ -171,7 +310,7 @@
                                 "id": 3,
                                 "form_id": 1,
                                 "parent_id": 1,
-                                "parent_type": "App\\Models\\Form",
+                                "parent_type": "App\\Models\\Node",
                                 "type_id": 3,
                                 "order_number": 3,
                                 "title": "這是選擇題(Select)",
@@ -230,6 +369,7 @@
                 "order_number": 6,
                 "title": "這是橫向量表(MultipleChoiceGridHorizontal)",
                 "configs": {
+                    "readonly": false,
                     "scales": [
                         {
                             "id": 1,
@@ -249,7 +389,7 @@
                     ]
                 },
                 "rules": {
-                    "is_required": true
+                    "required": true
                 },
                 "options": [
                     {
@@ -307,7 +447,7 @@
                     ]
                 },
                 "rules": {
-                    "is_required": true
+                    "required": true
                 },
                 "options": [
                     {
@@ -385,7 +525,7 @@
                     ]
                 },
                 "rules": {
-                    "is_required": true
+                    "required": true
                 },
                 "options": [
                     {

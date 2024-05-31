@@ -1,12 +1,14 @@
 <template>
     <v-card :hover="width >= 1440" variant="text" class="cursor-default">
-        <v-card-title class="text-wrap"> {{ node.order_number }}. {{ node.title }} </v-card-title>
+        <v-card-title v-if="node.parent_type === 'App\\Models\\Form'" class="text-wrap pb-0">
+            {{ node.order_number }}. {{ node.title }}
+            <span class="text-caption text-error text-no-wrap">{{ nodeRules.required ? '必填欄位' : '' }}</span>
+        </v-card-title>
         <v-card-text>
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
-
             <v-form ref="form" v-model="valid">
-                <v-container v-if="width >= 1440" fluid>
+                <v-container v-if="width >= 1440" fluid class="border">
                     <v-row class="bg-green py-1">
                         <v-col :offset="node.configs.scales.length >= 8 ? 5 : node.configs.scales.length <= 3 ? 10 : 8"
                             :lg="node.configs.scales.length >= 8 ? 7 : node.configs.scales.length <= 3 ? 2 : 4">
@@ -28,7 +30,7 @@
                         </v-col>
                         <v-col cols="12"
                             :lg="node.configs.scales.length >= 8 ? 7 : node.configs.scales.length <= 3 ? 2 : 4">
-                            <v-radio-group inline v-model="radios[index]" :rules="rules" hide-details="auto">
+                            <v-radio-group inline v-model="answer[index]" :rules="rules" hide-details="auto">
                                 <v-row class="flex-nowrap">
                                     <v-col v-for="scale in node.configs.scales" :key="scale.value" class="text-center">
                                         <v-radio :value="scale.value"></v-radio>
@@ -45,7 +47,7 @@
                             ({{ index + 1 }}) {{ option.title }}
                         </v-col>
                         <v-col cols="12" class="pt-0">
-                            <v-radio-group inline v-model="radios[index]" :rules="rules" hide-details="auto">
+                            <v-radio-group inline v-model="answer[index]" :rules="rules" hide-details="auto">
                                 <v-radio v-for="scale in node.configs.scales" :key="scale.value" :label="scale.title"
                                     :value="scale.value"></v-radio>
                             </v-radio-group>
@@ -79,16 +81,34 @@ export default {
     data() {
         return {
             valid: false,
-            radios: [],
+            answer: [],
             rules: [],
         };
     },
+    computed: {
+        configs() {
+            return this.node.configs ?? {};
+        },
+        nodeRules() {
+            return this.node.rules ?? {};
+        },
+    },
     methods: {
-        is_required(v) {
-            return !!v || "請選擇一個選項";
+        initRules() {
+            this.rules = [];
+            for (const key in this.nodeRules) {
+                switch (key) {
+                    case "required":
+                        if (this.nodeRules[key]) this.rules.push((v) => !!v || "必填欄位");
+                        break;
+                    default:
+                        break;
+                }
+            }
         },
     },
     mounted() {
+        this.initRules();
     },
 };
 </script>

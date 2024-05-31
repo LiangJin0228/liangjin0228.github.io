@@ -3,9 +3,7 @@
 
     <v-app-bar app v-if="fixedTitle.show" height="fit-content">
         <v-app-bar-title class="ma-0 pa-5 pb-1">
-            <span :class="{ 'text-wrap': fixedTitle.expand }">
-                {{ fixedTitle.content }}
-            </span>
+            <span v-html="fixedTitle.content" :class="{ 'text-wrap': fixedTitle.expand }"></span>
             <br />
             <v-btn block rounded class="ma-auto" @click="fixedTitle.expand = !fixedTitle.expand">
                 <v-icon>
@@ -26,13 +24,16 @@
         </template>
 
         <v-container fluid class="ma-0 px-0 d-flex flex-column">
-            <Node v-for="node in form.nodes" :key="node.id" class="fixed-title" :class="`order-${node.order_number}`"
-                ref="formNodes" :node="node" />
+            <template v-for="node in form.nodes" :key="node.id">
+                <!-- <Node v-if="form.pages[page - 1].includes(node.id)" class="fixed-title"
+                    :class="`order-${node.order_number}`" ref="formNodes" :node="node" /> -->
+                <Node class="fixed-title" :class="`order-${node.order_number}`" ref="formNodes" :node="node" />
+            </template>
         </v-container>
 
         <v-card-actions class="mb-5 d-flex justify-end">
             <v-btn color="primary" size="large" variant="elevated" @click="submit">
-                提交
+                {{ nextOrSubmit }}
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -54,9 +55,9 @@
 <script>
 // import axios from "axios";
 import { useDisplay } from "vuetify";
-import fakedata from "./fakeData";
-import LoadingNode from "../Loading.vue";
+import LoadingNode from "./Loading.vue";
 import Node from "./Node.vue";
+import fakedata from "./fakeData";
 
 export default {
     setup() {
@@ -84,19 +85,24 @@ export default {
             form: null,
         };
     },
-    computed: {},
+    computed: {
+        nextOrSubmit() {
+            return this.page === this.form.pages.length ? "提交" : "下一頁";
+        },
+    },
     methods: {
         async submit() {
             let validationPassed = true;
 
             for (const index in this.$refs.formNodes) {
                 const formNode = this.$refs.formNodes[index];
-                const valid = await formNode.$refs.node.$refs.form.validate();
+                const node = formNode.$refs.node;
+                const valid = await node.$refs.form.validate();
 
                 if (!valid.valid) {
                     validationPassed = false;
-                    formNode.$refs.node.$data.panels = [];
-                    alert(`第${formNode.node.order_number}題填答值有誤，請重新填寫！`);
+                    node.$data.panels = [];
+                    alert(`第${formNode.node.order_number}題填答值有誤,請重新填寫！`);
                     window.scrollTo({
                         left: 0,
                         top: formNode.$el.offsetTop - 64,
@@ -107,9 +113,18 @@ export default {
             }
 
             if (validationPassed) {
-                // Perform your request here
-                alert('All forms are valid. Proceed with the request.');
+                this.page === this.form.pages.length ? this.submitRequest() : this.page++;
             }
+        },
+        async submitRequest() {
+            // await axios.post("/submit", this.form).then((response) => {
+            //     this.snackbar.status = response.status;
+            //     this.snackbar.text = response.data.message;
+            //     this.snackbar.show = true;
+            // });
+            this.snackbar.status = 200;
+            this.snackbar.text = "提交成功!";
+            this.snackbar.show = true;
         },
     },
     async mounted() {
@@ -133,11 +148,12 @@ export default {
                     let content = card.children[1].innerHTML;
                     if (
                         card.offsetHeight > 800 &&
-                        card.offsetTop <= lastKnownScrollPosition &&
+                        card.offsetTop + 64 <= lastKnownScrollPosition &&
                         lastKnownScrollPosition <= cardBottom - 200
                     ) {
                         this.fixedTitle.content = content;
                         this.fixedTitle.show = true;
+                        this.fixedTitle.expand = true;
                     } else if (lastKnownScrollPosition > cardBottom - 200) {
                         this.fixedTitle.show = false;
                     }
