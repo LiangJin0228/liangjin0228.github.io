@@ -131,12 +131,83 @@
                     {
                         "id": 1,
                         "title": "師資培育中心/處/學院主管(正副主任/處長/院長)",
-                        "value": 1
+                        "value": 1,
+                        "nodes": [
+                            {
+                                "id": 1,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Form",
+                                "type_id": 1,
+                                "order_number": 1,
+                                "title": "這是簡答題(ShortAnswer)",
+                                "configs": {},
+                                "rules": {
+                                    "is_required": true,
+                                    "max_length": 100
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Form",
+                                "type_id": 2,
+                                "order_number": 2,
+                                "title": "這是問答題(Paragraph)",
+                                "configs": {},
+                                "rules": {
+                                    "is_required": true
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": 2,
                         "title": "師資培育中心/處/學院組長",
-                        "value": 2
+                        "value": 2,
+                        "nodes": [
+                            {
+                                "id": 3,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Form",
+                                "type_id": 3,
+                                "order_number": 3,
+                                "title": "這是選擇題(Select)",
+                                "configs": {},
+                                "rules": {
+                                    "is_required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "1",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "2",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "3",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "4",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "5(含)以上",
+                                        "value": 5
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "id": 3,

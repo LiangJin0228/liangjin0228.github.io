@@ -1,6 +1,6 @@
 <template>
     <v-card :hover="width >= 1440" variant="text" class="cursor-default">
-        <v-card-title class="text-wrap"> {{ newPrependOrderNumber }}. {{ node.title }} </v-card-title>
+        <v-card-title class="text-wrap"> {{ node.order_number }}. {{ node.title }} </v-card-title>
         <v-card-text>
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
@@ -46,7 +46,7 @@
                         <v-col cols="12" class="text-subtitle-1">
                             ({{ index + 1 }}) {{ option.title }}
                         </v-col>
-                        <v-col cols="12">
+                        <v-col cols="12" class="pt-0">
                             <v-row class="py-1">
                                 <v-col cols="12">
                                     <v-radio-group inline hide-details="auto">
@@ -56,7 +56,7 @@
                                                 <v-container class="text-wrap ma-0 pa-0">
                                                     {{ scale.title }}
                                                 </v-container>
-                                                <v-radio style="visibility: hidden;"></v-radio>
+                                                <v-radio style="visibility: hidden; height: 0 !important"></v-radio>
                                             </v-col>
                                         </v-row>
                                     </v-radio-group>
@@ -90,15 +90,6 @@ export default {
         return { width };
     },
     props: {
-        validateFormTimes: {
-            type: Number,
-            required: true,
-        },
-        prependOrderNumber: {
-            type: [String, Number],
-            required: false,
-            default: null,
-        },
         node: {
             type: Object,
             required: true,
@@ -116,62 +107,12 @@ export default {
             rules: [],
         };
     },
-    computed: {
-        newPrependOrderNumber() {
-            if (this.prependOrderNumber && this.prependOrderNumber !== 0) {
-                return `${this.prependOrderNumber}-${this.node.order_number}`;
-            } else {
-                return this.node.order_number;
-            }
-        },
-    },
     methods: {
-        checkAnswer() {
-            this.$refs.form.validate();
-            if (this.$refs.form.isValid) {
-                this.answerChanged();
-                this.anserValidated();
-            }
-        },
-        answerChanged(event) {
-            if (event && event.node.id !== this.node.id) {
-                this.$emit("answerChanged", event);
-            } else {
-                this.$emit("answerChanged", {
-                    node: this.node,
-                    answer: this.radios,
-                });
-            }
-        },
-        anserValidated(event) {
-            if (event && event.node.id !== this.node.id) {
-                this.$emit("anserValidated", event);
-            } else {
-                this.$emit("anserValidated", {
-                    node: this.node,
-                    validateFormTimes: this.validateFormTimes,
-                });
-            }
-        },
         is_required(v) {
             return !!v || "請選擇一個選項";
         },
     },
-    watch: {
-        radios() {
-            this.answerChanged();
-        },
-        validateFormTimes() {
-            this.checkAnswer();
-        },
-    },
     mounted() {
-        let rules = this.node.rules;
-        for (let rule in rules) {
-            if (rule && rule !== "mutually_exclusive") {
-                this.rules.push(this.$options.methods[rule]);
-            }
-        }
     },
 };
 </script>

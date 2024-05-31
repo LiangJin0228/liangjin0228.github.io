@@ -33,32 +33,6 @@ import Node from './Node.vue';
 <script>
 export default {
     props: {
-        settings: {
-            type: Array,
-            required: false,
-            default: () => [
-                {
-                    title: '複製',
-                    value: 1,
-                    icon: 'mdi-content-copy',
-                },
-                {
-                    title: '刪除',
-                    value: 2,
-                    icon: 'mdi-delete',
-                },
-                {
-                    title: '設定',
-                    value: 3,
-                    icon: 'mdi-cog',
-                },
-            ],
-        },
-        prependOrderNumber: {
-            type: [String, Number],
-            required: false,
-            default: null,
-        },
         node: {
             type: Object,
             required: true,
@@ -68,17 +42,7 @@ export default {
             }),
         }
     },
-    computed: {
-        sectionSettings() {
-            return Array.from(this.settings);
-        }
-    },
     mounted() {
-        this.sectionSettings.push({
-            title: 'Section',
-            value: 4,
-            icon: 'mdi-plus',
-        });
     }
 }
 </script>

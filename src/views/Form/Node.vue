@@ -1,32 +1,21 @@
 <template>
-    <component :is="targetComponent.component" :node="node" :prependOrderNumber="prependOrderNumber"
-        :validateFormTimes="validateFormTimes">
-    </component>
+    <component ref="node" :is="targetComponent.component" :node="node"></component>
 </template>
 
 <script>
 import { shallowRef } from "vue";
-import Checkbox from "./Checkbox.vue";
-import Paragraph from "./Paragraph.vue";
-import Radio from "./Radio.vue";
+import Checkbox from "./Questions/Checkbox.vue";
+import Paragraph from "./Questions/Paragraph.vue";
+import Radio from "./Questions/Radio.vue";
 import Section from "./Section.vue";
-import Select from "./Select.vue";
-import ShortAnswer from "./ShortAnswer.vue";
-import MultipleChoiceGridHorizontal from "./MultipleChoiceGridHorizontal.vue";
-import MultipleChoiceGridVertical from "./MultipleChoiceGridVertical.vue";
-import MultipleChoiceGridDesktop from "./MultipleChoiceGridDesktop.vue";
+import Select from "./Questions/Select.vue";
+import ShortAnswer from "./Questions/ShortAnswer.vue";
+import MultipleChoiceGridHorizontal from "./Questions/MultipleChoiceGridHorizontal.vue";
+import MultipleChoiceGridVertical from "./Questions/MultipleChoiceGridVertical.vue";
+import MultipleChoiceGridDesktop from "./Questions/MultipleChoiceGridDesktop.vue";
 
 export default {
     props: {
-        validateFormTimes: {
-            type: Number,
-            required: true,
-        },
-        prependOrderNumber: {
-            type: [String, Number],
-            required: false,
-            default: null,
-        },
         node: {
             type: Object,
             required: true,
