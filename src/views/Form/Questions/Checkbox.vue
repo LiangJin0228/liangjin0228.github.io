@@ -9,8 +9,8 @@
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">
                 <template v-for="(option, index) in node.options" :key="option.id">
-                    <v-checkbox hide-details="auto" v-model="answer" :readonly="configs.readonly ?? false"
-                        :label="option.title" :rules="rules" :value="option.value" density="compact" return-object>
+                    <v-checkbox v-model="answer" :readonly="configs.readonly ?? false" :label="option.title"
+                        :rules="rules" :value="option.value" density="compact" hide-details="auto" return-object>
                     </v-checkbox>
                     <v-container v-if="option.nodes && answer.includes(option.value)" fluid class="ma-0 pa-0">
                         <v-expansion-panels multiple v-model="panels[index]">
@@ -36,16 +36,14 @@
 
 <script setup>
 import Node from "../Node.vue";
+import { useDisplay } from "vuetify";
+
+const { width } = useDisplay();
 </script>
 
 <script>
-import { useDisplay } from "vuetify";
 
 export default {
-    setup() {
-        const { width } = useDisplay();
-        return { width };
-    },
     props: {
         node: {
             type: Object,

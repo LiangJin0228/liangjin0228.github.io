@@ -10,7 +10,7 @@
             <v-form ref="form" v-model="valid">
                 <v-select v-model="answer" :items="node.options" :label="configs.label ?? '請選擇'" variant="solo"
                     :clearable="configs.clearable ?? true" :readonly="configs.readonly ?? false" :rules="rules"
-                    return-object></v-select>
+                    hide-details="auto" return-object></v-select>
                 <v-container fluid class="ma-0 pa-0" v-if="answer && answer.nodes">
                     <v-expansion-panels multiple v-model="panels">
                         <v-expansion-panel v-for="n in answer.nodes" :key="n.id" :value="n.id">
@@ -34,16 +34,14 @@
 
 <script setup>
 import Node from "../Node.vue";
+import { useDisplay } from "vuetify";
+
+const { width } = useDisplay();
 </script>
 
 <script>
-import { useDisplay } from "vuetify";
 
 export default {
-    setup() {
-        const { width } = useDisplay();
-        return { width };
-    },
     props: {
         node: {
             type: Object,

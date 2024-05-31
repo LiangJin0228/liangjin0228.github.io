@@ -8,7 +8,7 @@
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">
-                <v-radio-group v-model="answer" :rules="rules" color="green">
+                <v-radio-group v-model="answer" :rules="rules" hide-details="auto" color="green">
                     <v-radio v-for="option in node.options" :key="option.id" :label="option.title" :value="option.value"
                         :readonly="configs.readonly ?? false"></v-radio>
                 </v-radio-group>
@@ -36,16 +36,14 @@
 
 <script setup>
 import Node from "../Node.vue";
+import { useDisplay } from "vuetify";
+
+const { width } = useDisplay();
 </script>
 
 <script>
-import { useDisplay } from "vuetify";
 
 export default {
-    setup() {
-        const { width } = useDisplay();
-        return { width };
-    },
     props: {
         node: {
             type: Object,
