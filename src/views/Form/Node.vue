@@ -42,8 +42,10 @@ export default {
     },
     computed: {
         targetComponent() {
-            return this.components.find((component) => component.id === this.node.type_id);
+            return this.components.find(
+                (component) => component.id === this.node.type_id
+            );
         },
-    }
+    },
 };
 </script>

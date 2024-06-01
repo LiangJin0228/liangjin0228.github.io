@@ -8,13 +8,19 @@
             </v-app-bar>
             <v-main>
                 <v-container fluid class="text-h6">
-                    <span v-if="prependOrderNumber && prependOrderNumber !== 0 && node.title">
+                    <span v-if="
+                        prependOrderNumber &&
+                        prependOrderNumber !== 0 &&
+                        node.title
+                    ">
                         {{ prependOrderNumber }}.
                         {{ node.title }}
                     </span>
                 </v-container>
 
-                <v-container fluid class="pt-0" v-if="node.description">{{ node.description }}</v-container>
+                <v-container fluid class="pt-0" v-if="node.description">
+                    {{ node.description }}
+                </v-container>
 
                 <v-container fluid class="pt-0">
                     <template v-for="n in node.nodes" :key="n.id">
@@ -27,7 +33,7 @@
 </template>
 
 <script setup>
-import Node from './Node.vue';
+import Node from "./Node.vue";
 </script>
 
 <script>
@@ -40,9 +46,8 @@ export default {
                 configs: {},
                 options: [],
             }),
-        }
+        },
     },
-    mounted() {
-    }
-}
+    mounted() { },
+};
 </script>
