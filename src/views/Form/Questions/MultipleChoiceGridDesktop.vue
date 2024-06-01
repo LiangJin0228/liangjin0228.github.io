@@ -4,36 +4,34 @@
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">{{ nodeRules.required ? '必填欄位' : '' }}</span>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="pt-0">
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">
                 <v-container v-if="width >= 1440" fluid class="border">
                     <v-row class="bg-green py-1">
-                        <v-col :offset="node.configs.scales.length >= 8 ? 5 : node.configs.scales.length <= 3 ? 10 : 8"
-                            :lg="node.configs.scales.length >= 8 ? 7 : node.configs.scales.length <= 3 ? 2 : 4">
+                        <v-col :offset="node.options.length >= 8 ? 5 : node.options.length <= 3 ? 10 : 8"
+                            :lg="node.options.length >= 8 ? 7 : node.options.length <= 3 ? 2 : 4">
                             <v-radio-group inline hide-details="auto">
                                 <v-row class="flex-nowrap">
-                                    <v-col v-for="scale in node.configs.scales" :key="scale.id" class="text-center">
-                                        <v-container class="pa-0">{{ scale.title }}</v-container>
+                                    <v-col v-for="option in node.options" :key="option.id" class="text-center">
+                                        <v-container class="pa-0">{{ option.title }}</v-container>
                                     </v-col>
                                 </v-row>
                             </v-radio-group>
                         </v-col>
                     </v-row>
-                    <v-row v-for="(option, index) in node.options" :key="index"
+                    <v-row v-for="(scale, index) in node.configs.scales" :key="index"
                         :class="{ 'bg-green-lighten-5': index % 2 == 0 }">
-                        <v-col cols="12"
-                            :lg="node.configs.scales.length >= 8 ? 5 : node.configs.scales.length <= 3 ? 10 : 8"
+                        <v-col cols="12" :lg="node.options.length >= 8 ? 5 : node.options.length <= 3 ? 10 : 8"
                             class="text-subtitle-1">
-                            ({{ index + 1 }}) {{ option.title }}
+                            ({{ index + 1 }}) {{ scale.title }}
                         </v-col>
-                        <v-col cols="12"
-                            :lg="node.configs.scales.length >= 8 ? 7 : node.configs.scales.length <= 3 ? 2 : 4">
+                        <v-col cols="12" :lg="node.options.length >= 8 ? 7 : node.options.length <= 3 ? 2 : 4">
                             <v-radio-group inline v-model="answer[index]" :rules="rules" hide-details="auto">
                                 <v-row class="flex-nowrap">
-                                    <v-col v-for="scale in node.configs.scales" :key="scale.value" class="text-center">
-                                        <v-radio :value="scale.value"></v-radio>
+                                    <v-col v-for="option in node.options" :key="option.value" class="text-center">
+                                        <v-radio :value="option.value"></v-radio>
                                     </v-col>
                                 </v-row>
                             </v-radio-group>
@@ -43,20 +41,20 @@
 
                 <v-container v-else fluid class="rounded-xl border bg-green-lighten-5"
                     style="width: inherit; overflow-x: auto;">
-                    <v-row v-for="(option, index) in node.options" :key="index"
+                    <v-row v-for="(scale, index) in node.configs.scales" :key="scale.value"
                         style="width: inherit; overflow-x: auto;">
                         <v-col cols="12" class="text-subtitle-1">
-                            ({{ index + 1 }}) {{ option.title }}
+                            ({{ index + 1 }}) {{ scale.title }}
                         </v-col>
                         <v-col cols="12" class="pt-0">
                             <v-row class="py-1">
                                 <v-col cols="12">
                                     <v-radio-group inline hide-details="auto">
                                         <v-row class="flex-nowrap">
-                                            <v-col v-for="scale in node.configs.scales" :key="scale.value"
+                                            <v-col v-for="option in node.options" :key="option.value"
                                                 class="rounded-t-lg bg-green text-center border pa-1">
                                                 <v-container class="text-wrap ma-0 pa-0">
-                                                    {{ scale.title }}
+                                                    {{ option.title }}
                                                 </v-container>
                                                 <v-radio style="visibility: hidden; height: 0 !important"></v-radio>
                                             </v-col>
@@ -67,9 +65,9 @@
                                 <v-col cols="12">
                                     <v-radio-group inline v-model="answer[index]" :rules="rules" hide-details="auto">
                                         <v-row class="flex-nowrap">
-                                            <v-col v-for="scale in node.configs.scales" :key="scale.value"
+                                            <v-col v-for="option in node.options" :key="option.value"
                                                 class="rounded-b-lg text-center border pa-1 mb-1">
-                                                <v-radio :value="scale.value"></v-radio>
+                                                <v-radio :value="option.value"></v-radio>
                                             </v-col>
                                         </v-row>
                                     </v-radio-group>

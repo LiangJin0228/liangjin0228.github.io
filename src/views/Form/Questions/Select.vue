@@ -4,25 +4,26 @@
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">{{ nodeRules.required ? '必填欄位' : '' }}</span>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="pt-0">
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">
                 <v-select v-model="answer" :items="node.options" :label="configs.label ?? '請選擇'" variant="solo"
                     :clearable="configs.clearable ?? true" :readonly="configs.readonly ?? false" :rules="rules"
                     hide-details="auto" return-object></v-select>
-                <v-container fluid class="ma-0 pa-0" v-if="answer && answer.nodes">
+                <v-container fluid v-if="answer && answer.nodes">
                     <v-expansion-panels multiple v-model="panels">
                         <v-expansion-panel v-for="n in answer.nodes" :key="n.id" :value="n.id">
                             <v-expansion-panel-title>
-                                {{ n.order_number }}. {{ n.title }}
-                                <span class="text-caption text-error text-no-wrap">
-                                    {{ n.rules.required ? '必填欄位' : '' }}
-                                </span>
+                                <v-container fluid class="pa-0">
+                                    {{ n.order_number }}. {{ n.title }}
+                                    <span class="text-caption text-error text-no-wrap">
+                                        {{ n.rules.required ? '必填欄位' : '' }}
+                                    </span>
+                                </v-container>
                             </v-expansion-panel-title>
                             <v-expansion-panel-text class="pa-0">
-                                <Node class="fixed-title" :class="`order-${n.order_number}`" ref="formNodes"
-                                    :node="n" />
+                                <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
                             </v-expansion-panel-text>
                         </v-expansion-panel>
                     </v-expansion-panels>

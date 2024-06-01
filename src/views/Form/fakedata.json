@@ -2,7 +2,10 @@
     "form": {
         "title": "問卷填答頁面測試",
         "description": "爲改善用戶填答體驗, 以下為各種題型的測試, 請填寫完整, 謝謝!",
-        "pages": [[1], [2, 3, 4, 5], [6, 7, 8]],
+        "pages": [
+            [1, 2, 3, 4, 5],
+            [6, 7, 8]
+        ],
         "nodes": [
             {
                 "id": 1,
@@ -39,7 +42,7 @@
                     "readonly": false
                 },
                 "rules": {
-                    "required": false,
+                    "required": true,
                     "max": 500
                 }
             },
@@ -50,7 +53,7 @@
                 "parent_type": "App\\Models\\Form",
                 "type_id": 3,
                 "order_number": 3,
-                "title": "這是選擇題(Select)",
+                "title": "這是選擇題(Select)(選項上會説明限制)",
                 "configs": {
                     "clearable": true,
                     "readonly": false
@@ -61,7 +64,7 @@
                 "options": [
                     {
                         "id": 1,
-                        "title": "1",
+                        "title": "選我回答1,2題",
                         "value": 1,
                         "nodes": [
                             {
@@ -107,22 +110,340 @@
                     },
                     {
                         "id": 2,
-                        "title": "2",
-                        "value": 2
+                        "title": "選我回答3,4題",
+                        "value": 2,
+                        "nodes": [
+                            {
+                                "id": 3,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 3,
+                                "order_number": 3,
+                                "title": "這是選擇題(Select)(選項上會説明限制)",
+                                "configs": {
+                                    "clearable": true,
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "選我回答1,2題",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "選我回答3,4題",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "選我回答5,6題",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "選我回答7,8題",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "5(含)以上",
+                                        "value": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 4,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 4,
+                                "order_number": 4,
+                                "title": "這是單選題(Radio)",
+                                "configs": {
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "完全沒有",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "投入不多",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "有些投入",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "非常投入",
+                                        "value": 4
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "id": 3,
-                        "title": "3",
-                        "value": 3
+                        "title": "選我回答5,6題",
+                        "value": 3,
+                        "nodes": [
+                            {
+                                "id": 5,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 5,
+                                "order_number": 5,
+                                "title": "這是多選題(Checkbox)",
+                                "configs": {
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true,
+                                    "mutually_exclusive": [
+                                        {
+                                            "select": [5],
+                                            "clear": [1, 2, 3, 4]
+                                        },
+                                        {
+                                            "select": [1],
+                                            "clear": [3]
+                                        }
+                                    ]
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "師資培育中心/處/學院主管(正副主任/處長/院長)",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "師資培育中心/處/學院組長",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "師資培育系所主任/所長",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "以上皆無",
+                                        "value": 4
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 6,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 6,
+                                "order_number": 6,
+                                "title": "這是橫向量表(MultipleChoiceGridHorizontal)",
+                                "configs": {
+                                    "readonly": false,
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "中央教育行政工作",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "縣市/地方教育行政工作",
+                                            "value": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "幼兒園、中小學學校行政工作(含兼任)",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "無",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "有",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "無中生有",
+                                        "value": 3
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "id": 4,
-                        "title": "4",
-                        "value": 4
+                        "title": "選我回答7,8題",
+                        "value": 4,
+                        "nodes": [
+                            {
+                                "id": 7,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 7,
+                                "order_number": 7,
+                                "title": "這是縱向量表(MultipleChoiceGridVertical)",
+                                "configs": {
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "大專校院任教經驗",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "師資培育專業課程任教經驗",
+                                            "value": 2
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "都沒有",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "3年(含)以內",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "4-10年",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "11-20年",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "21年(含)以上",
+                                        "value": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 8,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 8,
+                                "order_number": 8,
+                                "title": "這是類桌面量表(MultipleChoiceGridDesktop)",
+                                "configs": {
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "108學年度暑期",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "109學年度上學期",
+                                            "value": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "109學年度下學期",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "0小時",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "1-2小時",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "3-4小時",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "5-6小時",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "7-8小時",
+                                        "value": 5
+                                    },
+                                    {
+                                        "id": 6,
+                                        "title": "9-10小時",
+                                        "value": 6
+                                    },
+                                    {
+                                        "id": 7,
+                                        "title": "11-12小時",
+                                        "value": 7
+                                    },
+                                    {
+                                        "id": 8,
+                                        "title": "13-14小時",
+                                        "value": 8
+                                    },
+                                    {
+                                        "id": 9,
+                                        "title": "14-15小時",
+                                        "value": 9
+                                    },
+                                    {
+                                        "id": 10,
+                                        "title": "15小時(含)以上",
+                                        "value": 10
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "id": 5,
-                        "title": "5(含)以上",
+                        "title": "我沒有子題",
                         "value": 5
                     }
                 ]
@@ -134,7 +455,7 @@
                 "parent_type": "App\\Models\\Form",
                 "type_id": 4,
                 "order_number": 4,
-                "title": "這是單選題(Radio)",
+                "title": "這是單選題(Radio)(選項上説明限制,只有一層,再選不會有子題)",
                 "configs": {
                     "readonly": false
                 },
@@ -144,7 +465,7 @@
                 "options": [
                     {
                         "id": 1,
-                        "title": "完全沒有",
+                        "title": "選我回答1,2題",
                         "value": 1,
                         "nodes": [
                             {
@@ -190,59 +511,341 @@
                     },
                     {
                         "id": 2,
-                        "title": "投入不多",
+                        "title": "選我回答3,4題",
                         "value": 2,
                         "nodes": [
                             {
-                                "id": 1,
+                                "id": 3,
                                 "form_id": 1,
                                 "parent_id": 1,
                                 "parent_type": "App\\Models\\Node",
-                                "type_id": 1,
-                                "order_number": 1,
-                                "title": "這是簡答題(ShortAnswer)",
+                                "type_id": 3,
+                                "order_number": 3,
+                                "title": "這是選擇題(Select)(選項上會説明限制)",
                                 "configs": {
-                                    "label": "請填寫您的姓名",
                                     "clearable": true,
-                                    "placeholder": "eg. 王X明",
                                     "readonly": false
                                 },
                                 "rules": {
-                                    "required": true,
-                                    "min": 2,
-                                    "max": 20
-                                }
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "選我回答1,2題",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "選我回答3,4題",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "選我回答5,6題",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "選我回答7,8題",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "5(含)以上",
+                                        "value": 5
+                                    }
+                                ]
                             },
                             {
-                                "id": 2,
+                                "id": 4,
                                 "form_id": 1,
                                 "parent_id": 1,
                                 "parent_type": "App\\Models\\Node",
-                                "type_id": 2,
-                                "order_number": 2,
-                                "title": "這是問答題(Paragraph)",
+                                "type_id": 4,
+                                "order_number": 4,
+                                "title": "這是單選題(Radio)",
                                 "configs": {
-                                    "label": "請輸入您的意見",
-                                    "clearable": true,
-                                    "placeholder": "字數限制500字",
                                     "readonly": false
                                 },
                                 "rules": {
-                                    "required": false,
-                                    "max": 500
-                                }
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "完全沒有",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "投入不多",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "有些投入",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "非常投入",
+                                        "value": 4
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
                         "id": 3,
-                        "title": "有些投入",
-                        "value": 3
+                        "title": "選我回答5,6題",
+                        "value": 3,
+                        "nodes": [
+                            {
+                                "id": 5,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 5,
+                                "order_number": 5,
+                                "title": "這是多選題(Checkbox)",
+                                "configs": {
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true,
+                                    "mutually_exclusive": [
+                                        {
+                                            "select": [5],
+                                            "clear": [1, 2, 3, 4]
+                                        },
+                                        {
+                                            "select": [1],
+                                            "clear": [3]
+                                        }
+                                    ]
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "師資培育中心/處/學院主管(正副主任/處長/院長)",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "師資培育中心/處/學院組長",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "師資培育系所主任/所長",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "以上皆無",
+                                        "value": 4
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 6,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 6,
+                                "order_number": 6,
+                                "title": "這是橫向量表(MultipleChoiceGridHorizontal)",
+                                "configs": {
+                                    "readonly": false,
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "中央教育行政工作",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "縣市/地方教育行政工作",
+                                            "value": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "幼兒園、中小學學校行政工作(含兼任)",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "無",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "有",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "無中生有",
+                                        "value": 3
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "id": 4,
-                        "title": "非常投入",
-                        "value": 4
+                        "title": "選我回答7,8題",
+                        "value": 4,
+                        "nodes": [
+                            {
+                                "id": 7,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 7,
+                                "order_number": 7,
+                                "title": "這是縱向量表(MultipleChoiceGridVertical)",
+                                "configs": {
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "大專校院任教經驗",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "師資培育專業課程任教經驗",
+                                            "value": 2
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "都沒有",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "3年(含)以內",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "4-10年",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "11-20年",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "21年(含)以上",
+                                        "value": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 8,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 8,
+                                "order_number": 8,
+                                "title": "這是類桌面量表(MultipleChoiceGridDesktop)",
+                                "configs": {
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "108學年度暑期",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "109學年度上學期",
+                                            "value": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "109學年度下學期",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "0小時",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "1-2小時",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "3-4小時",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "5-6小時",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "7-8小時",
+                                        "value": 5
+                                    },
+                                    {
+                                        "id": 6,
+                                        "title": "9-10小時",
+                                        "value": 6
+                                    },
+                                    {
+                                        "id": 7,
+                                        "title": "11-12小時",
+                                        "value": 7
+                                    },
+                                    {
+                                        "id": 8,
+                                        "title": "13-14小時",
+                                        "value": 8
+                                    },
+                                    {
+                                        "id": 9,
+                                        "title": "14-15小時",
+                                        "value": 9
+                                    },
+                                    {
+                                        "id": 10,
+                                        "title": "15小時(含)以上",
+                                        "value": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": 5,
+                        "title": "我沒有子題",
+                        "value": 5
                     }
                 ]
             },
@@ -253,7 +856,7 @@
                 "parent_type": "App\\Models\\Form",
                 "type_id": 5,
                 "order_number": 5,
-                "title": "這是多選題(Checkbox)",
+                "title": "這是多選題(Checkbox)(選項上説明限制,只有一層,再選不會有子題)",
                 "configs": {
                     "readonly": false
                 },
@@ -261,15 +864,19 @@
                     "required": true,
                     "mutually_exclusive": [
                         {
-                            "select": [4],
-                            "clear": [1, 2, 3]
+                            "select": [5],
+                            "clear": [1, 2, 3, 4]
+                        },
+                        {
+                            "select": [1],
+                            "clear": [3]
                         }
                     ]
                 },
                 "options": [
                     {
                         "id": 1,
-                        "title": "師資培育中心/處/學院主管(正副主任/處長/院長)",
+                        "title": "選我回答1,2題(并且和選項三(選我回答5,6題)互斥)",
                         "value": 1,
                         "nodes": [
                             {
@@ -280,10 +887,16 @@
                                 "type_id": 1,
                                 "order_number": 1,
                                 "title": "這是簡答題(ShortAnswer)",
-                                "configs": {},
+                                "configs": {
+                                    "label": "請填寫您的姓名",
+                                    "clearable": true,
+                                    "placeholder": "eg. 王X明",
+                                    "readonly": false
+                                },
                                 "rules": {
-                                    "is_required": true,
-                                    "max_length": 100
+                                    "required": true,
+                                    "min": 2,
+                                    "max": 20
                                 }
                             },
                             {
@@ -294,16 +907,22 @@
                                 "type_id": 2,
                                 "order_number": 2,
                                 "title": "這是問答題(Paragraph)",
-                                "configs": {},
+                                "configs": {
+                                    "label": "請輸入您的意見",
+                                    "clearable": true,
+                                    "placeholder": "字數限制500字",
+                                    "readonly": false
+                                },
                                 "rules": {
-                                    "is_required": true
+                                    "required": false,
+                                    "max": 500
                                 }
                             }
                         ]
                     },
                     {
                         "id": 2,
-                        "title": "師資培育中心/處/學院組長",
+                        "title": "選我回答3,4題",
                         "value": 2,
                         "nodes": [
                             {
@@ -313,30 +932,33 @@
                                 "parent_type": "App\\Models\\Node",
                                 "type_id": 3,
                                 "order_number": 3,
-                                "title": "這是選擇題(Select)",
-                                "configs": {},
+                                "title": "這是選擇題(Select)(選項上會説明限制)",
+                                "configs": {
+                                    "clearable": true,
+                                    "readonly": false
+                                },
                                 "rules": {
-                                    "is_required": true
+                                    "required": true
                                 },
                                 "options": [
                                     {
                                         "id": 1,
-                                        "title": "1",
+                                        "title": "選我回答1,2題",
                                         "value": 1
                                     },
                                     {
                                         "id": 2,
-                                        "title": "2",
+                                        "title": "選我回答3,4題",
                                         "value": 2
                                     },
                                     {
                                         "id": 3,
-                                        "title": "3",
+                                        "title": "選我回答5,6題",
                                         "value": 3
                                     },
                                     {
                                         "id": 4,
-                                        "title": "4",
+                                        "title": "選我回答7,8題",
                                         "value": 4
                                     },
                                     {
@@ -345,18 +967,296 @@
                                         "value": 5
                                     }
                                 ]
+                            },
+                            {
+                                "id": 4,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 4,
+                                "order_number": 4,
+                                "title": "這是單選題(Radio)",
+                                "configs": {
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "完全沒有",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "投入不多",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "有些投入",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "非常投入",
+                                        "value": 4
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
                         "id": 3,
-                        "title": "師資培育系所主任/所長",
-                        "value": 3
+                        "title": "選我回答5,6題",
+                        "value": 3,
+                        "nodes": [
+                            {
+                                "id": 5,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 5,
+                                "order_number": 5,
+                                "title": "這是多選題(Checkbox)",
+                                "configs": {
+                                    "readonly": false
+                                },
+                                "rules": {
+                                    "required": true,
+                                    "mutually_exclusive": [
+                                        {
+                                            "select": [5],
+                                            "clear": [1, 2, 3, 4]
+                                        },
+                                        {
+                                            "select": [1],
+                                            "clear": [3]
+                                        }
+                                    ]
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "師資培育中心/處/學院主管(正副主任/處長/院長)",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "師資培育中心/處/學院組長",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "師資培育系所主任/所長",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "以上皆無",
+                                        "value": 4
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 6,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 6,
+                                "order_number": 6,
+                                "title": "這是橫向量表(MultipleChoiceGridHorizontal)",
+                                "configs": {
+                                    "readonly": false,
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "中央教育行政工作",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "縣市/地方教育行政工作",
+                                            "value": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "幼兒園、中小學學校行政工作(含兼任)",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "無",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "有",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "無中生有",
+                                        "value": 3
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "id": 4,
-                        "title": "以上皆無",
-                        "value": 4
+                        "title": "選我回答7,8題",
+                        "value": 4,
+                        "nodes": [
+                            {
+                                "id": 7,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 7,
+                                "order_number": 7,
+                                "title": "這是縱向量表(MultipleChoiceGridVertical)",
+                                "configs": {
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "大專校院任教經驗",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "師資培育專業課程任教經驗",
+                                            "value": 2
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "都沒有",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "3年(含)以內",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "4-10年",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "11-20年",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "21年(含)以上",
+                                        "value": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 8,
+                                "form_id": 1,
+                                "parent_id": 1,
+                                "parent_type": "App\\Models\\Node",
+                                "type_id": 8,
+                                "order_number": 8,
+                                "title": "這是類桌面量表(MultipleChoiceGridDesktop)",
+                                "configs": {
+                                    "scales": [
+                                        {
+                                            "id": 1,
+                                            "title": "108學年度暑期",
+                                            "value": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "109學年度上學期",
+                                            "value": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "109學年度下學期",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                "rules": {
+                                    "required": true
+                                },
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "0小時",
+                                        "value": 1
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "1-2小時",
+                                        "value": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "title": "3-4小時",
+                                        "value": 3
+                                    },
+                                    {
+                                        "id": 4,
+                                        "title": "5-6小時",
+                                        "value": 4
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "7-8小時",
+                                        "value": 5
+                                    },
+                                    {
+                                        "id": 6,
+                                        "title": "9-10小時",
+                                        "value": 6
+                                    },
+                                    {
+                                        "id": 7,
+                                        "title": "11-12小時",
+                                        "value": 7
+                                    },
+                                    {
+                                        "id": 8,
+                                        "title": "13-14小時",
+                                        "value": 8
+                                    },
+                                    {
+                                        "id": 9,
+                                        "title": "14-15小時",
+                                        "value": 9
+                                    },
+                                    {
+                                        "id": 10,
+                                        "title": "15小時(含)以上",
+                                        "value": 10
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": 5,
+                        "title": "我沒有子題(并和其他所有題目互斥)",
+                        "value": 5
                     }
                 ]
             },
@@ -373,17 +1273,17 @@
                     "scales": [
                         {
                             "id": 1,
-                            "title": "無",
+                            "title": "中央教育行政工作",
                             "value": 1
                         },
                         {
                             "id": 2,
-                            "title": "有",
+                            "title": "縣市/地方教育行政工作",
                             "value": 2
                         },
                         {
                             "id": 3,
-                            "title": "無中生有",
+                            "title": "幼兒園、中小學學校行政工作(含兼任)",
                             "value": 3
                         }
                     ]
@@ -394,17 +1294,17 @@
                 "options": [
                     {
                         "id": 1,
-                        "title": "中央教育行政工作",
+                        "title": "無",
                         "value": 1
                     },
                     {
                         "id": 2,
-                        "title": "縣市/地方教育行政工作",
+                        "title": "有",
                         "value": 2
                     },
                     {
                         "id": 3,
-                        "title": "幼兒園、中小學學校行政工作(含兼任)",
+                        "title": "無中生有",
                         "value": 3
                     }
                 ]
@@ -421,28 +1321,13 @@
                     "scales": [
                         {
                             "id": 1,
-                            "title": "都沒有",
+                            "title": "大專校院任教經驗",
                             "value": 1
                         },
                         {
                             "id": 2,
-                            "title": "3年(含)以內",
+                            "title": "師資培育專業課程任教經驗",
                             "value": 2
-                        },
-                        {
-                            "id": 3,
-                            "title": "4-10年",
-                            "value": 3
-                        },
-                        {
-                            "id": 4,
-                            "title": "11-20年",
-                            "value": 4
-                        },
-                        {
-                            "id": 5,
-                            "title": "21年(含)以上",
-                            "value": 5
                         }
                     ]
                 },
@@ -452,13 +1337,28 @@
                 "options": [
                     {
                         "id": 1,
-                        "title": "大專校院任教經驗",
+                        "title": "都沒有",
                         "value": 1
                     },
                     {
                         "id": 2,
-                        "title": "師資培育專業課程任教經驗",
+                        "title": "3年(含)以內",
                         "value": 2
+                    },
+                    {
+                        "id": 3,
+                        "title": "4-10年",
+                        "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "11-20年",
+                        "value": 4
+                    },
+                    {
+                        "id": 5,
+                        "title": "21年(含)以上",
+                        "value": 5
                     }
                 ]
             },
@@ -474,53 +1374,18 @@
                     "scales": [
                         {
                             "id": 1,
-                            "title": "0小時",
+                            "title": "108學年度暑期",
                             "value": 1
                         },
                         {
                             "id": 2,
-                            "title": "1-2小時",
+                            "title": "109學年度上學期",
                             "value": 2
                         },
                         {
                             "id": 3,
-                            "title": "3-4小時",
+                            "title": "109學年度下學期",
                             "value": 3
-                        },
-                        {
-                            "id": 4,
-                            "title": "5-6小時",
-                            "value": 4
-                        },
-                        {
-                            "id": 5,
-                            "title": "7-8小時",
-                            "value": 5
-                        },
-                        {
-                            "id": 6,
-                            "title": "9-10小時",
-                            "value": 6
-                        },
-                        {
-                            "id": 7,
-                            "title": "11-12小時",
-                            "value": 7
-                        },
-                        {
-                            "id": 8,
-                            "title": "13-14小時",
-                            "value": 8
-                        },
-                        {
-                            "id": 8,
-                            "title": "14-15小時",
-                            "value": 8
-                        },
-                        {
-                            "id": 8,
-                            "title": "15小時(含)以上",
-                            "value": 8
                         }
                     ]
                 },
@@ -530,18 +1395,53 @@
                 "options": [
                     {
                         "id": 1,
-                        "title": "108學年度暑期",
+                        "title": "0小時",
                         "value": 1
                     },
                     {
                         "id": 2,
-                        "title": "109學年度上學期",
+                        "title": "1-2小時",
                         "value": 2
                     },
                     {
                         "id": 3,
-                        "title": "109學年度下學期",
+                        "title": "3-4小時",
                         "value": 3
+                    },
+                    {
+                        "id": 4,
+                        "title": "5-6小時",
+                        "value": 4
+                    },
+                    {
+                        "id": 5,
+                        "title": "7-8小時",
+                        "value": 5
+                    },
+                    {
+                        "id": 6,
+                        "title": "9-10小時",
+                        "value": 6
+                    },
+                    {
+                        "id": 7,
+                        "title": "11-12小時",
+                        "value": 7
+                    },
+                    {
+                        "id": 8,
+                        "title": "13-14小時",
+                        "value": 8
+                    },
+                    {
+                        "id": 9,
+                        "title": "14-15小時",
+                        "value": 9
+                    },
+                    {
+                        "id": 10,
+                        "title": "15小時(含)以上",
+                        "value": 10
                     }
                 ]
             }

@@ -2,12 +2,16 @@
     <LoadingNode :loading="loading" />
 
     <v-app-bar app v-if="fixedTitle.show" height="fit-content">
-        <v-app-bar-title class="ma-0 pa-5 pb-1">
+        <v-app-bar-title id="fixedTitle" class="ma-0 pa-3 pb-1">
             <span v-html="fixedTitle.content" :class="{ 'text-wrap': fixedTitle.expand }"></span>
             <br />
             <v-btn block rounded class="ma-auto" @click="fixedTitle.expand = !fixedTitle.expand">
                 <v-icon>
-                    {{ fixedTitle.expand ? "mdi-chevron-up" : "mdi-chevron-down" }}
+                    {{
+                        fixedTitle.expand
+                            ? "mdi-chevron-up"
+                            : "mdi-chevron-down"
+                    }}
                 </v-icon>
             </v-btn>
         </v-app-bar-title>
@@ -25,9 +29,9 @@
 
         <v-container fluid class="ma-0 px-0 d-flex flex-column">
             <template v-for="node in form.nodes" :key="node.id">
-                <!-- <Node v-if="form.pages[page - 1].includes(node.id)" class="fixed-title"
-                    :class="`order-${node.order_number}`" ref="formNodes" :node="node" /> -->
-                <Node class="fixed-title" :class="`order-${node.order_number}`" ref="formNodes" :node="node" />
+                <Node v-if="form.pages[page - 1].includes(node.id)" class="fixed-title"
+                    :class="`order-${node.order_number}`" ref="formNodes" :node="node" />
+                <!-- <Node class="fixed-title" :class="`order-${node.order_number}`" ref="formNodes" :node="node" /> -->
             </template>
         </v-container>
 
@@ -91,29 +95,55 @@ export default {
         },
     },
     methods: {
+        getElementAbsPos(element) {
+            let top = element.offsetTop;
+            let left = element.offsetLeft;
+            while ((element = element.offsetParent)) {
+                top += element.offsetTop;
+                left += element.offsetLeft;
+            }
+            return { left: left, top: top - 128, behavior: "smooth" };
+        },
+        async recursivelyValidate(node) {
+            if (node.$refs.node) {
+                for (const index in node.$refs.node) {
+                    const valid = await this.recursivelyValidate(
+                        node.$refs.node[index].$refs.node
+                    );
+                    if (!valid) return valid;
+                }
+                return true;
+            } else {
+                const valid = await node.$refs.form.validate();
+                if (!valid.valid) {
+                    node.$data.panels = [];
+                    alert(
+                        `第${node.$props.node.order_number}題填答值有誤,請重新填寫！`
+                    );
+                    window.scrollTo(this.getElementAbsPos(node.$el));
+                    return false;
+                }
+                return true;
+            }
+        },
         async submit() {
             let validationPassed = true;
 
             for (const index in this.$refs.formNodes) {
-                const formNode = this.$refs.formNodes[index];
-                const node = formNode.$refs.node;
-                const valid = await node.$refs.form.validate();
+                const node = this.$refs.formNodes[index].$refs.node;
+                // const valid = await node.$refs.form.validate();
+                validationPassed = await this.recursivelyValidate(node);
 
-                if (!valid.valid) {
-                    validationPassed = false;
-                    node.$data.panels = [];
-                    alert(`第${formNode.node.order_number}題填答值有誤,請重新填寫！`);
-                    window.scrollTo({
-                        left: 0,
-                        top: formNode.$el.offsetTop - 64,
-                        behavior: "smooth",
-                    });
-                    break;
-                }
+                if (!validationPassed) break;
             }
 
             if (validationPassed) {
-                this.page === this.form.pages.length ? this.submitRequest() : this.page++;
+                if (this.page === this.form.pages.length) {
+                    this.submitRequest();
+                } else {
+                    this.page++;
+                    window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+                }
             }
         },
         async submitRequest() {
@@ -137,29 +167,45 @@ export default {
         this.loading = false;
 
         if (this.width <= 1440) {
-            let lastKnownScrollPosition = 0;
-            let fixedCards = document.querySelectorAll(".fixed-title");
-            let firstCard = fixedCards[0];
-
             document.addEventListener("scroll", () => {
-                lastKnownScrollPosition = window.scrollY;
+                let lastKnownScrollPosition = window.scrollY;
+                let fixedCards = document.querySelectorAll(".fixed-title");
+                let firstCard = fixedCards[0];
+
                 fixedCards.forEach((card) => {
-                    let cardBottom = card.offsetTop + card.offsetHeight;
+                    let childNodesHeight = Array.from(
+                        card.querySelectorAll(
+                            ".v-container .v-expansion-panels"
+                        )
+                    ).reduce((total, node) => total + node.offsetHeight, 0);
+                    let cardBottom =
+                        card.offsetTop + card.offsetHeight - childNodesHeight;
                     let content = card.children[1].innerHTML;
-                    if (
-                        card.offsetHeight > 800 &&
+                    let isWithinCard =
                         card.offsetTop + 64 <= lastKnownScrollPosition &&
-                        lastKnownScrollPosition <= cardBottom - 200
-                    ) {
-                        this.fixedTitle.content = content;
-                        this.fixedTitle.show = true;
-                        this.fixedTitle.expand = true;
+                        lastKnownScrollPosition <= cardBottom - 200;
+
+                    if (card.offsetHeight > 800 && isWithinCard) {
+                        this.fixedTitle = {
+                            content: content,
+                            show: true,
+                            expand: true,
+                        };
                     } else if (lastKnownScrollPosition > cardBottom - 200) {
-                        this.fixedTitle.show = false;
+                        this.fixedTitle = {
+                            content: "",
+                            show: false,
+                            expand: false,
+                        };
                     }
                 });
+
                 if (lastKnownScrollPosition < firstCard.offsetTop) {
-                    this.fixedTitle.show = false;
+                    this.fixedTitle = {
+                        content: "",
+                        show: false,
+                        expand: false,
+                    };
                 }
             });
         }

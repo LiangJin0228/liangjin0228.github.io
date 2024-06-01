@@ -4,7 +4,7 @@
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">{{ nodeRules.required ? '必填欄位' : '' }}</span>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="pt-0">
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
             <v-form ref="form" v-model="valid">

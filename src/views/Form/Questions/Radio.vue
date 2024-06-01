@@ -4,32 +4,34 @@
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">{{ nodeRules.required ? '必填欄位' : '' }}</span>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="pt-0">
             <v-img v-if="node.image" max-height="500" :src="node.image" class="ma-5"></v-img>
             <v-container fluid v-if="node.description"> {{ node.description }} </v-container>
-            <v-form ref="form" v-model="valid">
+            <v-form ref="form" v-model="valid" class="rounded-xl pa-2"
+                :style="!valid ? 'background-color: rgba(201, 76, 76, 0.3);' : ''">
                 <v-radio-group v-model="answer" :rules="rules" hide-details="auto" color="green">
                     <v-radio v-for="option in node.options" :key="option.id" :label="option.title" :value="option.value"
                         :readonly="configs.readonly ?? false"></v-radio>
                 </v-radio-group>
-                <v-container v-if="node.options.find((option) => option.value === answer)" fluid class="ma-0 pa-0">
-                    <v-expansion-panels multiple v-model="panels">
-                        <v-expansion-panel v-for="n in node.options.find((option) => option.value === answer).nodes"
-                            :key="n.id" :value="n.id">
-                            <v-expansion-panel-title>
+            </v-form>
+            <v-container v-if="answer && node.options.find((option) => option.value === answer).nodes" fluid>
+                <v-expansion-panels multiple v-model="panels">
+                    <v-expansion-panel v-for="n in node.options.find((option) => option.value === answer).nodes"
+                        :key="n.id" :value="n.id">
+                        <v-expansion-panel-title>
+                            <v-container fluid class="pa-0">
                                 {{ n.order_number }}. {{ n.title }}
                                 <span class="text-caption text-error text-no-wrap">
                                     {{ n.rules.required ? '必填欄位' : '' }}
                                 </span>
-                            </v-expansion-panel-title>
-                            <v-expansion-panel-text class="pa-0">
-                                <Node class="fixed-title" :class="`order-${n.order_number}`" ref="formNodes"
-                                    :node="n" />
-                            </v-expansion-panel-text>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-container>
-            </v-form>
+                            </v-container>
+                        </v-expansion-panel-title>
+                        <v-expansion-panel-text class="pa-0">
+                            <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
+                        </v-expansion-panel-text>
+                    </v-expansion-panel>
+                </v-expansion-panels>
+            </v-container>
         </v-card-text>
     </v-card>
 </template>
