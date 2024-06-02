@@ -30,8 +30,8 @@
         <v-container fluid class="ma-0 px-0 d-flex flex-column">
             <template v-for="node in form.nodes" :key="node.id">
                 <Node v-if="form.pages[page - 1].includes(node.id)" class="fixed-title"
-                    :class="`order-${node.order_number}`" ref="formNodes" :node="node" />
-                <!-- <Node class="fixed-title" :class="`order-${node.order_number}`" ref="formNodes" :node="node" /> -->
+                    :class="`order-${node.order_number}`" ref="node" :node="node" />
+                <!-- <Node class="fixed-title" :class="`order-${node.order_number}`" ref="node" :node="node" /> -->
             </template>
         </v-container>
 
@@ -116,7 +116,6 @@ export default {
             } else {
                 const valid = await node.$refs.form.validate();
                 if (!valid.valid) {
-                    node.$data.panels = [];
                     alert(
                         `第${node.$props.node.order_number}題填答值有誤,請重新填寫！`
                     );
@@ -129,9 +128,8 @@ export default {
         async submit() {
             let validationPassed = true;
 
-            for (const index in this.$refs.formNodes) {
-                const node = this.$refs.formNodes[index].$refs.node;
-                // const valid = await node.$refs.form.validate();
+            for (const index in this.$refs.node) {
+                const node = this.$refs.node[index].$refs.node;
                 validationPassed = await this.recursivelyValidate(node);
 
                 if (!validationPassed) break;
@@ -142,6 +140,11 @@ export default {
                     this.submitRequest();
                 } else {
                     this.page++;
+                    this.snackbar = {
+                        status: 200,
+                        text: `第${this.page - 1}頁的答案已經順利提交，跳到下一頁！`,
+                        show: true,
+                    };
                     window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
                 }
             }
@@ -152,9 +155,11 @@ export default {
             //     this.snackbar.text = response.data.message;
             //     this.snackbar.show = true;
             // });
-            this.snackbar.status = 200;
-            this.snackbar.text = "提交成功!";
-            this.snackbar.show = true;
+            this.snackbar = {
+                status: 200,
+                text: "提交成功",
+                show: true,
+            };
         },
     },
     async mounted() {
@@ -174,18 +179,20 @@ export default {
 
                 fixedCards.forEach((card) => {
                     let childNodesHeight = Array.from(
-                        card.querySelectorAll(
-                            ".v-container .v-expansion-panels"
-                        )
+                        card.querySelectorAll(".v-container .sub-node")
                     ).reduce((total, node) => total + node.offsetHeight, 0);
-                    let cardBottom =
-                        card.offsetTop + card.offsetHeight - childNodesHeight;
+
+                    const cardPos = this.getElementAbsPos(card);
+                    let cardBottom = cardPos.top + card.offsetHeight;
                     let content = card.children[1].innerHTML;
                     let isWithinCard =
-                        card.offsetTop + 64 <= lastKnownScrollPosition &&
+                        cardPos.top + 64 <= lastKnownScrollPosition &&
                         lastKnownScrollPosition <= cardBottom - 200;
 
-                    if (card.offsetHeight > 800 && isWithinCard) {
+                    if (
+                        card.offsetHeight - childNodesHeight > 800 &&
+                        isWithinCard
+                    ) {
                         this.fixedTitle = {
                             content: content,
                             show: true,

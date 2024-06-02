@@ -1,6 +1,6 @@
 <template>
     <v-card :hover="width >= 1440" variant="text" class="cursor-default">
-        <v-card-title v-if="node.parent_type === 'App\\Models\\Form'" class="text-wrap pb-0">
+        <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
                 {{ nodeRules.required ? "必填欄位" : "" }}
@@ -12,31 +12,14 @@
                 {{ node.description }}
             </v-container>
             <v-form ref="form" v-model="valid">
-                <template v-for="(option, index) in node.options" :key="option.id">
+                <template v-for="option in node.options" :key="option.id">
                     <v-checkbox v-model="answer" :readonly="configs.readonly ?? false" :label="option.title"
-                        :rules="rules" :value="option.value" density="compact"
-                        :hide-details="index !== node.options.length - 1" return-object>
+                        :rules="rules" :value="option.value" density="compact" hide-details="auto" return-object>
                     </v-checkbox>
-                    <v-container v-if="option.nodes && answer.includes(option.value)" fluid>
-                        <v-expansion-panels multiple v-model="panels[index]">
-                            <v-expansion-panel v-for="n in option.nodes" :key="n.id" :value="n.id">
-                                <v-expansion-panel-title>
-                                    <v-container fluid class="pa-0">
-                                        {{ n.order_number }}. {{ n.title }}
-                                        <span class="text-caption text-error text-no-wrap">
-                                            {{
-                                                n.rules.required
-                                                    ? "必填欄位"
-                                                    : ""
-                                            }}
-                                        </span>
-                                    </v-container>
-                                </v-expansion-panel-title>
-                                <v-expansion-panel-text class="pa-0">
-                                    <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
-                                </v-expansion-panel-text>
-                            </v-expansion-panel>
-                        </v-expansion-panels>
+                    <v-container v-if="option.nodes && answer.includes(option.value)" fluid class="sub-node pa-0">
+                        <template v-for="n in option.nodes" :key="n.id">
+                            <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
+                        </template>
                     </v-container>
                 </template>
             </v-form>
@@ -67,7 +50,6 @@ export default {
     data() {
         return {
             valid: false,
-            panels: [],
             answer: [],
             rules: [],
         };
@@ -78,28 +60,6 @@ export default {
         },
         nodeRules() {
             return this.node.rules ?? {};
-        },
-    },
-    watch: {
-        valid(newValue) {
-            if (!newValue) this.panels = [];
-        },
-        answer(newValue, oldValue) {
-            newValue
-                .filter((v) => !oldValue.includes(v))
-                .forEach((v) => {
-                    let option = this.node.options.find((o) => o.value === v);
-                    if (option && option.nodes) {
-                        let optionIndex = this.node.options.findIndex(
-                            (o) => o.value === v
-                        );
-                        this.panels[optionIndex] =
-                            this.panels[optionIndex] ?? [];
-                        this.panels[optionIndex] = option.nodes.map(
-                            (n) => n.id
-                        );
-                    }
-                });
         },
     },
     methods: {

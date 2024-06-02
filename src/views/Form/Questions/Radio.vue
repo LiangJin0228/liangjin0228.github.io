@@ -1,6 +1,6 @@
 <template>
     <v-card :hover="width >= 1440" variant="text" class="cursor-default">
-        <v-card-title v-if="node.parent_type === 'App\\Models\\Form'" class="text-wrap pb-0">
+        <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
                 {{ nodeRules.required ? "必填欄位" : "" }}
@@ -18,27 +18,13 @@
                         :readonly="configs.readonly ?? false"></v-radio>
                 </v-radio-group>
             </v-form>
-            <v-container v-if="
-                answer &&
-                node.options.find((option) => option.value === answer).nodes
-            " fluid>
-                <v-expansion-panels multiple v-model="panels">
-                    <v-expansion-panel v-for="n in node.options.find(
-                        (option) => option.value === answer
-                    ).nodes" :key="n.id" :value="n.id">
-                        <v-expansion-panel-title>
-                            <v-container fluid class="pa-0">
-                                {{ n.order_number }}. {{ n.title }}
-                                <span class="text-caption text-error text-no-wrap">
-                                    {{ n.rules.required ? "必填欄位" : "" }}
-                                </span>
-                            </v-container>
-                        </v-expansion-panel-title>
-                        <v-expansion-panel-text class="pa-0">
-                            <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
-                        </v-expansion-panel-text>
-                    </v-expansion-panel>
-                </v-expansion-panels>
+            <v-container v-if="answer && node.options.find((option) => option.value === answer).nodes" fluid
+                class="sub-node pa-0">
+                <template
+                    v-for="n in node.options.find((option) => option.value === answer).nodes"
+                    :key="n.id">
+                    <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
+                </template>
             </v-container>
         </v-card-text>
     </v-card>
@@ -70,7 +56,6 @@ export default {
             answer: null,
             selectedRadio: null,
             rules: [],
-            panels: [],
         };
     },
     computed: {
@@ -79,14 +64,6 @@ export default {
         },
         nodeRules() {
             return this.node.rules ?? {};
-        },
-    },
-    watch: {
-        answer(newValue) {
-            let ans = this.node.options.find(
-                (option) => option.value === newValue
-            );
-            this.panels = ans.nodes ? ans.nodes.map((n) => n.id) : [];
         },
     },
     methods: {

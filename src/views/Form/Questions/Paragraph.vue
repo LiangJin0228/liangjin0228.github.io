@@ -1,6 +1,6 @@
 <template>
     <v-card :hover="width >= 1440" variant="text" class="cursor-default">
-        <v-card-title v-if="node.parent_type === 'App\\Models\\Form'" class="text-wrap pb-0">
+        <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
                 {{ nodeRules.required ? "必填欄位" : "" }}
