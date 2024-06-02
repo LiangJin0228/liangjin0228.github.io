@@ -11,18 +11,16 @@
             <v-container fluid v-if="node.description">
                 {{ node.description }}
             </v-container>
-            <v-form ref="form" v-model="valid" class="rounded-xl pa-2" :style="!valid ? 'background-color: rgba(201, 76, 76, 0.3);' : ''
-                ">
-                <v-radio-group v-model="answer" :rules="rules" hide-details="auto" color="green">
+            <v-form ref="form" v-model="valid">
+                <v-radio-group v-model="answer" :rules="rules" hide-details="auto" color="green"
+                    :style="!valid ? 'background-color: rgba(201, 76, 76, 0.3);' : ''">
                     <v-radio v-for="option in node.options" :key="option.id" :label="option.title" :value="option.value"
                         :readonly="configs.readonly ?? false"></v-radio>
                 </v-radio-group>
             </v-form>
             <v-container v-if="answer && node.options.find((option) => option.value === answer).nodes" fluid
                 class="sub-node pa-0">
-                <template
-                    v-for="n in node.options.find((option) => option.value === answer).nodes"
-                    :key="n.id">
+                <template v-for="n in node.options.find((option) => option.value === answer).nodes" :key="n.id">
                     <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
                 </template>
             </v-container>

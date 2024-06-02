@@ -14,17 +14,8 @@
             <v-form ref="form" v-model="valid">
                 <v-container v-if="width >= 1440" fluid class="border">
                     <v-row class="bg-green py-1">
-                        <v-col :offset="node.options.length >= 8
-                            ? 5
-                            : node.options.length <= 3
-                                ? 10
-                                : 8
-                            " :lg="node.options.length >= 8
-                                ? 7
-                                : node.options.length <= 3
-                                    ? 2
-                                    : 4
-                                ">
+                        <v-col :offset="node.options.length >= 8 ? 5 : node.options.length <= 3 ? 10 : 8"
+                            :lg="node.options.length >= 8 ? 7 : node.options.length <= 3 ? 2 : 4">
                             <v-radio-group inline hide-details="auto">
                                 <v-row class="flex-nowrap">
                                     <v-col v-for="option in node.options" :key="option.id" class="text-center">
@@ -38,20 +29,11 @@
                     </v-row>
                     <v-row v-for="(scale, index) in node.configs.scales" :key="index"
                         :class="{ 'bg-green-lighten-5': index % 2 == 0 }">
-                        <v-col cols="12" :lg="node.options.length >= 8
-                            ? 5
-                            : node.options.length <= 3
-                                ? 10
-                                : 8
-                            " class="text-subtitle-1">
+                        <v-col cols="12" :lg="node.options.length >= 8 ? 5 : node.options.length <= 3 ? 10 : 8"
+                            class="text-subtitle-1">
                             ({{ index + 1 }}) {{ scale.title }}
                         </v-col>
-                        <v-col cols="12" :lg="node.options.length >= 8
-                            ? 7
-                            : node.options.length <= 3
-                                ? 2
-                                : 4
-                            ">
+                        <v-col cols="12" :lg="node.options.length >= 8 ? 7 : node.options.length <= 3 ? 2 : 4">
                             <v-radio-group inline v-model="answer[index]" :rules="rules" hide-details="auto">
                                 <v-row class="flex-nowrap">
                                     <v-col v-for="option in node.options" :key="option.value" class="text-center">

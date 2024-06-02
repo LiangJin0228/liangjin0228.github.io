@@ -14,17 +14,8 @@
             <v-form ref="form" v-model="valid">
                 <v-container v-if="width >= 1440" fluid class="border">
                     <v-row class="bg-green py-1">
-                        <v-col :offset="node.options.length >= 8
-                            ? 5
-                            : node.options.length <= 3
-                                ? 10
-                                : 8
-                            " :lg="node.options.length >= 8
-                                ? 7
-                                : node.options.length <= 3
-                                    ? 2
-                                    : 4
-                                ">
+                        <v-col :offset="node.options.length >= 8 ? 5 : node.options.length <= 3 ? 10 : 8"
+                            :lg="node.options.length >= 8 ? 7 : node.options.length <= 3 ? 2 : 4">
                             <v-radio-group inline hide-details="auto">
                                 <v-row class="flex-nowrap">
                                     <v-col v-for="option in node.options" :key="option.id" class="text-center">
@@ -38,20 +29,11 @@
                     </v-row>
                     <v-row v-for="(scale, index) in node.configs.scales" :key="index"
                         :class="{ 'bg-green-lighten-5': index % 2 == 0 }">
-                        <v-col cols="12" :lg="node.options.length >= 8
-                            ? 5
-                            : node.options.length <= 3
-                                ? 10
-                                : 8
-                            " class="text-subtitle-1">
+                        <v-col cols="12" :lg="node.options.length >= 8 ? 5 : node.options.length <= 3 ? 10 : 8"
+                            class="text-subtitle-1">
                             ({{ index + 1 }}) {{ scale.title }}
                         </v-col>
-                        <v-col cols="12" :lg="node.options.length >= 8
-                            ? 7
-                            : node.options.length <= 3
-                                ? 2
-                                : 4
-                            ">
+                        <v-col cols="12" :lg="node.options.length >= 8 ? 7 : node.options.length <= 3 ? 2 : 4">
                             <v-radio-group inline v-model="answer[index]" :rules="rules" hide-details="auto">
                                 <v-row class="flex-nowrap">
                                     <v-col v-for="option in node.options" :key="option.value" class="text-center">
@@ -63,14 +45,12 @@
                     </v-row>
                 </v-container>
 
-                <v-container v-else fluid class="rounded-xl border bg-green-lighten-5"
-                    style="width: inherit; overflow-x: auto">
-                    <v-row v-for="(scale, index) in node.configs.scales" :key="scale.value"
-                        style="width: inherit; overflow-x: auto">
+                <v-container v-else fluid class="rounded-xl border bg-green-lighten-5" style="width: inherit;">
+                    <v-row v-for="(scale, index) in node.configs.scales" :key="scale.value" style="width: inherit;">
                         <v-col cols="12" class="text-subtitle-1">
                             ({{ index + 1 }}) {{ scale.title }}
                         </v-col>
-                        <v-col cols="12" class="pt-0">
+                        <v-col cols="12" style="overflow-x: auto">
                             <v-row class="py-1">
                                 <v-col cols="12">
                                     <v-radio-group inline hide-details="auto">
@@ -80,10 +60,7 @@
                                                 <v-container class="text-wrap ma-0 pa-0">
                                                     {{ option.title }}
                                                 </v-container>
-                                                <v-radio style="
-                                                        visibility: hidden;
-                                                        height: 0 !important;
-                                                    "></v-radio>
+                                                <v-radio style="visibility: hidden; height: 0 !important;"></v-radio>
                                             </v-col>
                                         </v-row>
                                     </v-radio-group>
