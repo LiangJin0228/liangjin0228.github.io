@@ -1,5 +1,5 @@
 <template>
-    <v-card :hover="width >= 1440" variant="text" class="cursor-default">
+    <v-card :id="node.id" v-if="!node.isSkipped" :hover="width >= 1440" variant="text" class="cursor-default">
         <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
@@ -58,6 +58,30 @@ export default {
         },
         nodeRules() {
             return this.node.rules ?? {};
+        },
+    },
+    watch: {
+        node: {
+            handler(newValue) {
+                this.initRules();
+                if (newValue.isSkipped) {
+                    this.answer = null;
+                }
+            },
+            deep: true
+        },
+        answer(newValue) {
+            this.node.options.forEach((option) => {
+                if (option.skip) {
+                    this.$emit("rollBackNode", option.skip);
+                }
+            });
+
+            if (newValue && newValue.skip) {
+                newValue.skip.forEach(node => {
+                    this.$emit("skipNode", node);
+                });
+            }
         },
     },
     methods: {

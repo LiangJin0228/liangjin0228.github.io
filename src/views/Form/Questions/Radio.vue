@@ -1,5 +1,5 @@
 <template>
-    <v-card :hover="width >= 1440" variant="text" class="cursor-default">
+    <v-card :id="node.id" v-if="!node.isSkipped" :hover="width >= 1440" variant="text" class="cursor-default">
         <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
@@ -13,7 +13,7 @@
             </v-container>
             <v-form ref="form" v-model="valid">
                 <v-radio-group v-model="answer" :rules="rules" hide-details="auto" color="green"
-                    :style="!valid ? 'background-color: rgba(201, 76, 76, 0.3);' : ''">
+                    :style="valid === false ? 'background-color: rgba(201, 76, 76, 0.3);' : ''">
                     <v-radio v-for="option in node.options" :key="option.id" :label="option.title" :value="option.value"
                         :readonly="configs.readonly ?? false"></v-radio>
                 </v-radio-group>
@@ -62,6 +62,32 @@ export default {
         },
         nodeRules() {
             return this.node.rules ?? {};
+        },
+    },
+    watch: {
+        node: {
+            handler(newValue) {
+                this.initRules();
+                if (newValue.isSkipped) {
+                    this.answer = null;
+                    this.valid = null;
+                }
+            },
+            deep: true
+        },
+        answer(newValue) {
+            this.node.options.forEach((option) => {
+                if (option.skip) {
+                    this.$emit("rollBackNode", option.skip);
+                }
+            });
+
+            const target = this.node.options.find((option) => option.value === newValue)
+            if (target && target.skip) {
+                target.skip.forEach(node => {
+                    this.$emit("skipNode", node);
+                });
+            }
         },
     },
     methods: {

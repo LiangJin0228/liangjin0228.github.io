@@ -1,5 +1,5 @@
 <template>
-    <v-card :hover="width >= 1440" variant="text" class="cursor-default">
+    <v-card :id="node.id" v-if="!node.isSkipped" :hover="width >= 1440" variant="text" class="cursor-default">
         <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
@@ -46,6 +46,17 @@ export default {
             answer: "",
             rules: [],
         };
+    },
+    watch: {
+        node: {
+            handler(newValue) {
+                this.initRules();
+                if (newValue.isSkipped) {
+                    this.answer = "";
+                }
+            },
+            deep: true
+        },
     },
     computed: {
         configs() {

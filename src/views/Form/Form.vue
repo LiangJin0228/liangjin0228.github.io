@@ -30,7 +30,8 @@
         <v-container fluid class="ma-0 px-0 d-flex flex-column">
             <template v-for="node in form.nodes" :key="node.id">
                 <Node v-if="form.pages[page - 1].includes(node.id)" class="fixed-title"
-                    :class="`order-${node.order_number}`" ref="node" :node="node" />
+                    :class="`order-${node.order_number}`" ref="node" :node="node" @skipNode="handleSkipNode"
+                    @rollBackNode="handleRollBackNode" />
                 <!-- <Node class="fixed-title" :class="`order-${node.order_number}`" ref="node" :node="node" /> -->
             </template>
         </v-container>
@@ -95,14 +96,22 @@ export default {
         },
     },
     methods: {
+        handleRollBackNode(targets) {
+            targets.forEach((target) => {
+                const t = this.form.nodes.find((node) => node.id === target);
+                t.isSkipped = false;
+            });
+        },
+        handleSkipNode(target) {
+            const t = this.form.nodes.find((node) => node.id === target);
+            t.isSkipped = true
+        },
         getElementAbsPos(element) {
             let top = element.offsetTop;
-            let left = element.offsetLeft;
             while ((element = element.offsetParent)) {
                 top += element.offsetTop;
-                left += element.offsetLeft;
             }
-            return { left: left, top: top - 128, behavior: "smooth" };
+            return { left: 0, top: top - 128, behavior: "smooth" };
         },
         async recursivelyValidate(node) {
             if (node.$refs.node) {
@@ -114,13 +123,15 @@ export default {
                 }
                 return true;
             } else {
-                const valid = await node.$refs.form.validate();
-                if (!valid.valid) {
-                    alert(
-                        `第${node.$props.node.order_number}題填答值有誤,請重新填寫！`
-                    );
-                    window.scrollTo(this.getElementAbsPos(node.$el));
-                    return false;
+                if (node.$refs.form) {
+                    const valid = await node.$refs.form.validate();
+                    if (!valid.valid) {
+                        alert(
+                            `第${node.$props.node.order_number}題填答值有誤,請重新填寫！`
+                        );
+                        window.scrollTo(this.getElementAbsPos(node.$el));
+                        return false;
+                    }
                 }
                 return true;
             }

@@ -1,5 +1,5 @@
 <template>
-    <v-card :hover="width >= 1440" variant="text" class="cursor-default">
+    <v-card :id="node.id" v-if="!node.isSkipped" :hover="width >= 1440" variant="text" class="cursor-default">
         <v-card-title class="text-wrap pb-0" :class="{ 'text-subtitle-1': node.parent_type !== 'App\\Models\\Form' }">
             {{ node.order_number }}. {{ node.title }}
             <span class="text-caption text-error text-no-wrap">
@@ -16,7 +16,8 @@
                     <v-checkbox v-model="answer" :readonly="configs.readonly ?? false" :label="option.title"
                         :rules="rules" :value="option.value" density="compact" hide-details="auto" return-object>
                     </v-checkbox>
-                    <v-container v-if="option.nodes && answer.includes(option.value)" fluid class="sub-node pa-0">
+                    <v-container v-if="answer && option.nodes && answer.includes(option.value)" fluid
+                        class="sub-node pa-0">
                         <template v-for="n in option.nodes" :key="n.id">
                             <Node class="fixed-title" :class="`order-${n.order_number}`" ref="node" :node="n" />
                         </template>
@@ -60,6 +61,34 @@ export default {
         },
         nodeRules() {
             return this.node.rules ?? {};
+        },
+    },
+    watch: {
+        node: {
+            handler(newValue) {
+                this.initRules();
+                if (newValue.isSkipped) {
+                    this.answer = [];
+                }
+            },
+            deep: true
+        },
+        answer(newValue) {
+            this.node.options.forEach((option) => {
+                if (option.skip) {
+                    this.$emit("rollBackNode", option.skip);
+                }
+            });
+
+            if (newValue) {
+                newValue.forEach((ans) => {
+                    if (ans.skip) {
+                        ans.skip.forEach(node => {
+                            this.$emit("skipNode", node);
+                        });
+                    }
+                });
+            }
         },
     },
     methods: {
