@@ -1,20 +1,50 @@
-/**
- * router/index.ts
- *
- * Automatic routes for `./src/pages/*.vue`
- */
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
 
-// Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
-import { setupLayouts } from 'virtual:generated-layouts'
-import { routes } from 'vue-router/auto-routes'
+const routes = [
+  {
+    path: '/',
+    redirect: '/Home'
+  },
+  {
+    path: '/Home',
+    component: () => import('../layouts/default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('../pages/home.vue')
+      }
+    ]
+  },
+  {
+    path: '/Resume',
+    component: () => import('../layouts/default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Resume',
+        component: () => import('../pages/resume.vue')
+      }
+    ]
+  },
+  {
+    path: '/Contact',
+    component: () => import('../layouts/default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Contact',
+        component: () => import('../pages/contact.vue')
+      }
+    ]
+  }
+]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: setupLayouts(routes),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
+  routes,
 })
 
-// Workaround for https://github.com/vitejs/vite/issues/11804
 router.onError((err, to) => {
   if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
     if (!localStorage.getItem('vuetify:dynamic-reload')) {
