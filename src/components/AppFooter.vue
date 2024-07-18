@@ -2,7 +2,7 @@
   <v-footer>
     <v-container>
       <v-row justify="center">
-        <v-btn v-for="page in pages" :key="page.title" color="white" variant="text" class="mx-2" rounded="xl"
+        <v-btn v-for="page in pages" :key="page.title" variant="text" class="mx-2" rounded="xl"
           :to="page.link">{{ page.title }}</v-btn>
       </v-row>
       <v-row justify="center">

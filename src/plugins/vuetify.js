@@ -4,6 +4,14 @@ import 'vuetify/styles'
 
 export default createVuetify({
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: 'custom',
+    themes:{
+      custom: {
+        dark: true,
+        colors: {
+          primary: '#F48FB1',
+        }
+      }
+    },
   },
 })
