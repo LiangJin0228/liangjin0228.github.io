@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta name="description" content="This is LiangJin Personal Website" />
-        <meta property="og:image" content="/liangjin-removebg.png" />
+        <meta property="og:image" content="/avatar2.jpg" />
         <meta property="og:title" content="LiangJin Personal Website" />
         <meta property="og:description" content="我叫陳亮憬,來自馬來西亞。" />
 
@@ -31,26 +31,37 @@
             })
         </script>
         <style>
-            /* Hide scrollbar for Chrome, Safari and Opera */
             ::-webkit-scrollbar {
                 display: none;
             }
-
-            /* Hide scrollbar for IE, Edge, and Firefox */
             body {
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;
+                scrollbar-width: none;
             }
-
             .JetBrains * {
                 font-family: 'JetBrains Mono', 'Source Code Pro', monospace !important;
             }
         </style>
-      <script type="module" crossorigin src="/assets/index-DBRLXFpt.js"></script>
+      <script type="module" crossorigin src="/assets/index-CCKINuzH.js"></script>
       <link rel="stylesheet" crossorigin href="/assets/index-BdW-SyCo.css">
     </head>
     <body>
         <div id="app" class="JetBrains"></div>
+
+        <script>
+            const widthThreshold = window.outerWidth - window.innerWidth > 100
+            const heightThreshold = window.outerHeight - window.innerHeight > 100
+            let opened = false
+
+            window.addEventListener('resize', () => {
+                const resized = Math.abs(window.outerWidth - window.innerWidth) > 100 || Math.abs(window.outerHeight - window.innerHeight) > 100
+                if (resized && !opened) {
+                    console.log('%c如果您對我感興趣，可以通過以下方式聯係我：', 'color: red; font-size: 30px;')
+                    console.log('%cliangjin0228@gmail.com', 'color: blue; font-size: 20px;')
+                    opened = true
+                }
+            })
+        </script>
 
         <noscript>
             <h1 style="margin: auto; text-align: center">您的瀏覽器不支持JavaScript，請啓用後再刷新頁面。</h1>
