@@ -9,30 +9,27 @@
     </v-sheet>
 </template>
 
-<script>
-export default {
-    props: {
-        baseId: {
-            type: String
-        },
-        baseColor: {
-            type: String,
-            default: 'black'
-        },
-        baseMaxWidth: {
-            type: String || Number,
-            default: '1280'
-        }
-    },
-    watch: {
-        '$vuetify.theme.current.dark': function (val) {
-            this.baseColorData = val ? 'black' : 'white'
-        }
-    },
-    data() {
-        return {
-            baseColorData: 'black'
-        }
-    },
-}
+<script setup>
+import { ref, reactive, watch } from 'vue'
+import { useTheme } from 'vuetify'
+
+const props = defineProps({
+    baseId: String,
+    baseMaxWidth: {
+        type: [String, Number],
+        default: '1280'
+    }
+})
+
+const theme = useTheme()
+const themeStatus = reactive({ ...theme })
+const baseColorData = themeStatus.global.current.dark ? ref('black') : ref('white')
+
+watch(themeStatus, (newValue) => {
+    if (newValue.global.current.dark) {
+        baseColorData.value = 'black'
+    } else {
+        baseColorData.value = 'white'
+    }
+})
 </script>

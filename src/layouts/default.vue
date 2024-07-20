@@ -1,6 +1,4 @@
 <template>
-  <v-app>
-    <router-view />
-    <AppFooter />
-  </v-app>
+  <router-view />
+  <AppFooter />
 </template>
