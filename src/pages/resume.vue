@@ -241,16 +241,16 @@
                         </v-card-text>
                     </v-card>
                 </v-card>
-                <v-fab @click="scrollToTop()" class="me-4" icon="mdi-arrow-up" location="top end" absolute
-                    offset></v-fab>
-
             </v-container>
         </v-sheet>
+        <TopButton />
     </v-main>
 </template>
 
 <script setup>
 import AppDrawer from "@/components/AppDrawer.vue"
+import TopButton from "@/components/TopButton.vue"
+import { handleScrollTo } from "@/assets/scripts/helpers.js"
 
 const items = [
     {

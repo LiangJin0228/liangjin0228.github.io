@@ -22,37 +22,44 @@
     <v-row>
         <v-col>
             <v-container fluid>
-                <v-card color="transparent">
-                    <v-card-title class="text-h5">
-                        Introduction
-                    </v-card-title>
-                    <v-card-text class="text-subtitle-1">
-                        The Department of Information Management of National Taiwan University of
-                        Science and Technology was established in 1978, and it has been more than 20
-                        years. In order to provide advanced research and development of information
-                        management theory and technology, the Institute of Information Management
-                        was established in 1988 to establish a master's and doctoral class. Starting
-                        from the second academic year, an EMBA asset management on-the-job master
-                        class will be established. The university part of the department is a
-                        two-year system. The four-year system recruits graduates from higher
-                        vocational colleges, and the two-year system recruits graduates from related
-                        disciplines such as the second and fifth colleges, so as to connect the
-                        curriculum teaching of higher vocational and junior colleges to ensure
-                        consistency and integrity. Course arrangement, and in-depth study of the
-                        theory and technology of information management, in order to become the
-                        information management technical personnel required by industrial and
-                        commercial enterprises. In addition, in the research institute of the
-                        department, the master class is divided into three admission channels:
-                        screening admission, general admission, and on-the-job special class,
-                        providing students with different learning paths, enabling postgraduates to
-                        do more in-depth study and research, so as to cultivate higher education The
-                        purpose of information management talents. Since the 1996 academic year, in
-                        response to the decrease in the number of junior college students, the
-                        two-year system has been suspended, and its posts have been transferred to
-                        postgraduate posts.
-                    </v-card-text>
+                <v-card hover rounded="xl" class="bg-transparent pa-5">
+                    <v-row>
+                        <v-col v-if="smAndDown" class="pa-16">
+                            <v-img class="ma-auto" width="300" src="/cs.png"></v-img>
+                        </v-col>
+                        <v-col>
+                            <v-card flat class="bg-transparent fill-height d-flex flex-column">
+                                <v-card-title class="text-h5">
+                                    2019/9 ~ 2023/7
+                                </v-card-title>
+                                <v-card-text class="text-subtitle-1">
+                                    NTUST Department of Information Management focuses on the development of practical
+                                    talents such as “system technology engineers,” “information system development
+                                    managers,” and “information resource planners,” while the Graduate School focuses on
+                                    the development of advanced information management professionals and researchers.
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-btn href="https://www.cs.ntust.edu.tw/" target="_blank" stacked width="300"
+                                        rounded="pill" variant="outlined">
+                                        <div class="mx-5 text-subtitle-1">
+                                            More About <br v-if="smAndDown"> CSIM NTUST
+                                        </div>
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-col>
+                        <v-col v-if="!smAndDown" class="pa-16">
+                            <v-img class="ma-auto" width="300" src="/cs.png"></v-img>
+                        </v-col>
+                    </v-row>
                 </v-card>
             </v-container>
         </v-col>
     </v-row>
 </template>
+
+<script setup>
+import { useDisplay } from "vuetify"
+
+const { smAndDown } = useDisplay()
+</script>

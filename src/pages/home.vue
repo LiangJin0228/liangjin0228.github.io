@@ -74,16 +74,12 @@
     <v-main>
         <v-sheet class="video-container" :height="!smAndDown ? '130vh' : '200vh'">
             <video style="object-fit: cover;height: 100vh;width: 100vw;position: fixed;z-index: 0;" preload="auto" muted
-                autoplay loop poster="/poster.png">
+                autoplay loop>
                 <source src="/infinity.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <v-container :style="{
-                position: 'fixed',
-                top: '50%',
-                left: '50%',
-                transform: `translate(-50%, -50%) scale(${homeScale})`,
-            }">
+            <v-container
+                :style="{ position: 'fixed', top: '50%', left: '50%', transform: `translate(-50%, -50%) scale(${homeScale})` }">
                 <div class="ma-auto" style="width: fit-content; max-width: 63vw">
                     <p class="text-h1 text-white font-weight-black mb-2">Hej!</p>
                     <p class="text-h5 text-white">
@@ -243,9 +239,122 @@
             </v-row>
         </BaseComponent>
 
+        <v-sheet id="projects" min-height="50vh" class="cursor-default">
+            <v-card flat width="100vw" min-width="100vw" min-height="50vh"
+                class="d-flex align-center rounded-0 text-white">
+                <video :src="isLightTheme ? '/ocean.mp4' : '/dark.mp4'"
+                    style="position: absolute; top: 0; left: 0; object-fit: cover;height: 100%;width: 100%;"
+                    preload="auto" muted autoplay loop />
+                <v-container style="max-width: 1280px; min-height: 10vh;">
+                    <v-row>
+                        <v-col class="d-flex justify-center">
+                            <h3 class="mt-16 text-h3 text-center font-weight-bold"
+                                :class="isLightTheme ? 'underline-shorter-light' : 'underline-shorter-dark'">
+                                Projects
+                            </h3>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col>
+                            <v-carousel continuous cycle hide-delimiters interval="3000"
+                                :show-arrows="smAndDown ? false : 'hover'" height="100%">
+                                <v-carousel-item>
+                                    <v-sheet height="100%" class="d-flex justify-center align-center"
+                                        style="background-color: transparent;">
+                                        <v-card rounded="xl" href="https://teacher.edu.tw/tted/web" target="_blank"
+                                            :width="smAndDown ? '100%' : '50%'"
+                                            :height="smAndDown ? 'undefined' : '700'" class="ma-1 my-10 pt-5 text-white"
+                                            style="backdrop-filter: blur(20px); background-color: rgba(0, 0, 0, 0.1)">
+                                            <v-img class="ma-auto" :width="smAndDown ? '150' : '300'"
+                                                src="/edu_logo.png"></v-img>
+                                            <v-card-title class="text-wrap text-center">
+                                                National Pre-Service and <br> In-Service Teacher Integrated Database
+                                            </v-card-title>
+                                            <v-card-subtitle class="text-wrap text-center">Work In
+                                                NTNU</v-card-subtitle>
+                                            <v-card-text class="text-subtitle-1">
+                                                I am responsible for developing and maintaining the Ministry of
+                                                Education's K-12 Teacher Database system. I use Laravel and Vue.js with
+                                                Vuetify. My daily tasks focus on maintenance with some development.
+                                                Recently, I upgraded the project from Laravel 8 to 10 and migrated the
+                                                front end from Angular to Vue 2, now refactoring to Vue 3. I use WSL and
+                                                Docker for development, write unit tests for new features, and perform
+                                                code reviews to ensure code quality and team collaboration.
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-sheet>
+                                </v-carousel-item>
+
+                                <v-carousel-item>
+                                    <v-sheet height="100%" class="d-flex justify-center align-center"
+                                        style="background-color: transparent;">
+                                        <v-card rounded="xl" :width="smAndDown ? '100%' : '50%'"
+                                            :height="smAndDown ? 'undefined' : '700'" class="ma-1 my-10 pt-5 text-white"
+                                            style="backdrop-filter: blur(20px); background-color: rgba(0, 0, 0, 0.1)">
+                                            <v-container fluid class="pa-0 d-flex justify-center align-center">
+                                                <v-avatar :size="smAndDown ? '150' : '300'">
+                                                    <v-img src="/hololens_project.webp"></v-img>
+                                                </v-avatar>
+                                            </v-container>
+                                            <v-card-title class="text-wrap text-center">
+                                                Applying Hololens2 to <br> Pool Sports Assist System
+                                            </v-card-title>
+                                            <v-card-subtitle class="text-wrap text-center">
+                                                Award of Excellence in NTUST Intramural Project Competition
+                                            </v-card-subtitle>
+                                            <v-card-text class="text-subtitle-1">
+                                                This is a graduation project for the university, which helps to learn
+                                                how to play pool through MR (Mixed Reality), calculating the optimal
+                                                solution and drawing the path to hit the ball. <br> <br>
+                                                The main responsibility is to process the UWP establishment and deploy
+                                                to Hololens2, the language used in the development is C#, and the
+                                                platform is Unity with Microsoft's MRTK for development.
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-sheet>
+                                </v-carousel-item>
+
+                                <v-carousel-item>
+                                    <v-sheet height="100%" class="d-flex justify-center align-center"
+                                        style="background-color: transparent;">
+                                        <v-card rounded="xl" href="https://sites.google.com/view/2023-ntust-osgp/home"
+                                            target="_blank" :width="smAndDown ? '100%' : '50%'"
+                                            :height="smAndDown ? 'undefined' : '700'" class="ma-1 my-10 pt-5 text-white"
+                                            style="backdrop-filter: blur(20px); background-color: rgba(0, 0, 0, 0.1)">
+                                            <v-container fluid class="pa-0 d-flex justify-center align-center">
+                                                <v-avatar :size="smAndDown ? '150' : '300'">
+                                                    <v-img src="/graduation.jpg"></v-img>
+                                                </v-avatar>
+                                            </v-container>
+                                            <v-card-title class="text-wrap text-center">
+                                                Overseas Student <br> Graduation Party Event Website
+                                            </v-card-title>
+                                            <v-card-subtitle class="text-wrap text-center">
+                                                Make good use of my profession
+                                            </v-card-subtitle>
+                                            <v-card-text class="text-subtitle-1">
+                                                During my college years, I served as vice president of the Overseas
+                                                Compatriot Students' Association, and created the information
+                                                department, using my professional knowledge to help the association
+                                                develop and maintain the association's website. <br> <br>
+                                                This website is the official website of the 2023 NTUST Overseas
+                                                Compatriot Graduation Party, using Google Apps Script with Google API
+                                                for development, and using Google Sites as the platform for website
+                                                publishing.
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-sheet>
+                                </v-carousel-item>
+                            </v-carousel>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card>
+        </v-sheet>
+
         <v-sheet id="educations" min-height="100vh" class="cursor-default">
             <v-card flat width="100vw" min-width="100vw" min-height="100vh"
-                class="d-flex flex-column align-center rounded-0 text-black">
+                class="d-flex flex-column align-center rounded-0">
                 <div style="width: 100vw; min-height: 10vh;" class="d-flex"
                     :class="isLightTheme ? 'educations-container-light' : 'educations-container-dark'">
                     <v-container style="max-width: 1280px; min-height: 10vh;">
@@ -269,7 +378,8 @@
                 </div>
             </v-card>
         </v-sheet>
-        <v-fab @click="handleScrollTo()" class="me-4" icon="mdi-arrow-up" location="top end" absolute offset></v-fab>
+
+        <TopButton />
     </v-main>
 </template>
 
@@ -288,14 +398,16 @@ import Nginx from "@/components/Home/Nginx.vue"
 import PHP from "@/components/Home/PHP.vue"
 import Vue from "@/components/Home/Vue.vue"
 import Vuetify from "@/components/Home/Vuetify.vue"
+import TopButton from "@/components/TopButton.vue"
 
+import '@/assets/styles/home.scss'
+
+import { handleScrollTo } from "@/assets/scripts/helpers.js"
 import { reactive, ref } from "vue"
 import { useDisplay, useTheme } from "vuetify"
 
-import { handleScrollTo } from "@/assets/scripts/home.js"
-import '@/assets/styles/home.scss'
-
-const { smAndDown, smAndUp } = useDisplay()
+const { smAndDown } = useDisplay()
+const { smAndUp } = useDisplay()
 const theme = useTheme()
 const themeStatus = reactive({ ...theme })
 const isLightTheme = themeStatus.global.current.dark ? ref(false) : ref(true)
