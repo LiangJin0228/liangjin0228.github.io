@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router/auto'
 const routes = [
   {
     path: '/',
-    redirect: '/Home'
+    redirect: '/Home',
   },
   {
     path: '/Home',
@@ -12,9 +12,9 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('../pages/home.vue')
-      }
-    ]
+        component: () => import('../pages/home.vue'),
+      },
+    ],
   },
   {
     path: '/Resume',
@@ -23,9 +23,9 @@ const routes = [
       {
         path: '',
         name: 'Resume',
-        component: () => import('../pages/resume.vue')
-      }
-    ]
+        component: () => import('../pages/resume.vue'),
+      },
+    ],
   },
   {
     path: '/Contact',
@@ -34,18 +34,18 @@ const routes = [
       {
         path: '',
         name: 'Contact',
-        component: () => import('../pages/contact.vue')
-      }
-    ]
-  }
+        component: () => import('../pages/contact.vue'),
+      },
+    ],
+  },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
-  scrollBehavior() {
+  scrollBehavior () {
     return { top: 0 }
-  }
+  },
 })
 
 router.onError((err, to) => {

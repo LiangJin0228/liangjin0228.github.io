@@ -12,6 +12,7 @@ module.exports = {
   extends: [
     'vuetify',
     './.eslintrc-auto-import.json',
+    '@vue/eslint-config-typescript',
   ],
   rules: {
     'vue/multi-word-component-names': 'off',

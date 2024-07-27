@@ -5,13 +5,13 @@ import 'vuetify/styles'
 export default createVuetify({
   theme: {
     defaultTheme: 'custom',
-    themes:{
+    themes: {
       custom: {
         dark: true,
         colors: {
           primary: '#F48FB1',
-        }
-      }
+        },
+      },
     },
   },
 })
