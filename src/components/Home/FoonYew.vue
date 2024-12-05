@@ -19,7 +19,7 @@
   <v-row>
     <v-col>
       <v-container fluid>
-        <v-card class="bg-transparent pa-5" hover rounded="xl">
+        <v-card class="bg-transparent pa-5 cursor-default" hover rounded="xl">
           <v-row>
             <v-col v-if="smAndDown" class="pa-16">
               <v-img class="ma-auto" src="/foonyew.png" width="300" />
