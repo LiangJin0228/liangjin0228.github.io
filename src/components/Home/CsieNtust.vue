@@ -22,7 +22,7 @@
   <v-row>
     <v-col>
       <v-container fluid>
-        <v-card class="bg-transparent pa-5" hover rounded="xl">
+        <v-card class="bg-transparent pa-5 cursor-default" hover rounded="xl">
           <v-row>
             <v-col v-if="smAndDown" class="pa-16">
               <v-img class="ma-auto" src="/csie.png" width="300" />
@@ -30,7 +30,7 @@
             <v-col>
               <v-card class="bg-transparent fill-height d-flex flex-column" flat>
                 <v-card-title class="text-h5">
-                  2024/9 ~ 2026/7
+                  2024/9 ~ Present
                 </v-card-title>
                 <v-card-text class="text-subtitle-1">
                   The main objective of CSIE department is to train students with equal emphasis on
