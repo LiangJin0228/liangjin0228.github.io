@@ -1,7 +1,7 @@
-import App from "./App.vue";
-import { createApp } from "vue";
-import { registerPlugins } from "@/plugins";
+import { registerPlugins } from '@/plugins'
+import { createApp } from 'vue'
+import App from './App.vue'
 
-const app = createApp(App);
-registerPlugins(app);
-app.mount("#app");
+const app = createApp(App)
+registerPlugins(app)
+app.mount('#app')

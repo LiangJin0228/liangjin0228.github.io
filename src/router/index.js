@@ -1,64 +1,69 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
 
 const routes = [
   {
-    path: "/",
-    redirect: "/index",
+    path: '/',
+    redirect: '/Home',
   },
   {
-    path: "/index",
-    component: () => import("@/layouts/DefaultLayout.vue"),
+    path: '/Home',
+    component: () => import('../layouts/default.vue'),
     children: [
       {
-        path: "",
-        name: "Home",
-        component: () =>
-          import(/* webpackChunkName: "home" */ "@/views/Home.vue"),
+        path: '',
+        name: 'Home',
+        component: () => import('../pages/home.vue'),
       },
     ],
   },
   {
-    path: "/resume",
-    component: () => import("@/layouts/DefaultLayout.vue"),
+    path: '/Resume',
+    component: () => import('../layouts/default.vue'),
     children: [
       {
-        path: "",
-        name: "Resume",
-        component: () =>
-          import(/* webpackChunkName: "resume" */ "@/views/Resume.vue"),
+        path: '',
+        name: 'Resume',
+        component: () => import('../pages/resume.vue'),
       },
     ],
   },
   {
-    path: "/about",
-    component: () => import("@/layouts/DefaultLayout.vue"),
+    path: '/Contact',
+    component: () => import('../layouts/default.vue'),
     children: [
       {
-        path: "",
-        name: "About",
-
-        component: () =>
-          import(/* webpackChunkName: "about" */ "@/views/About.vue"),
+        path: '',
+        name: 'Contact',
+        component: () => import('../pages/contact.vue'),
       },
     ],
   },
-  {
-    path: "/contact",
-    component: () => import("@/layouts/DefaultLayout.vue"),
-    children: [
-      {
-        path: "",
-        name: "Contact",
-        component: () =>
-          import(/* webpackChunkName: "contact" */ "@/views/Contact.vue"),
-      },
-    ],
-  },
-];
+]
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
-});
+  scrollBehavior () {
+    return { top: 0 }
+  },
+})
 
-export default router;
+router.onError((err, to) => {
+  if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
+    if (!localStorage.getItem('vuetify:dynamic-reload')) {
+      console.log('Reloading page to fix dynamic import error')
+      localStorage.setItem('vuetify:dynamic-reload', 'true')
+      location.assign(to.fullPath)
+    } else {
+      console.error('Dynamic import error, reloading page did not fix it', err)
+    }
+  } else {
+    console.error(err)
+  }
+})
+
+router.isReady().then(() => {
+  localStorage.removeItem('vuetify:dynamic-reload')
+})
+
+export default router

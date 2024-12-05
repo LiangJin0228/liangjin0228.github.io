@@ -1,17 +1,17 @@
-import "@mdi/font/css/materialdesignicons.css";
-import "vuetify/styles";
-import { createVuetify } from "vuetify";
+import '@mdi/font/css/materialdesignicons.css'
+import { createVuetify } from 'vuetify'
+import 'vuetify/styles'
 
 export default createVuetify({
-    theme: {
-        defaultTheme: "light",
-        themes: {
-            light: {
-                colors: {
-                    primary: "#1867C0",
-                    secondary: "#5CBBF6",
-                },
-            },
+  theme: {
+    defaultTheme: 'custom',
+    themes: {
+      custom: {
+        dark: true,
+        colors: {
+          primary: '#F48FB1',
         },
+      },
     },
-});
+  },
+})
