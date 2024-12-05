@@ -1,253 +1,212 @@
 <template>
   <AppDrawer />
   <v-main>
-    <v-sheet>
-      <v-container style="max-width: 1280px">
+    <v-sheet class="fill-height">
+      <v-sheet class="ma-auto pa-4" max-width="1280">
+        <v-row>
+          <v-col cols="6">
+            <h1>Resume</h1>
+          </v-col>
+          <v-col cols="6" class="ma-auto d-flex justify-end align-center">
+            <v-btn color="primary" href="/TanLiangJin.pdf" target="_blank">Download CV</v-btn>
+          </v-col>
+        </v-row>
 
-        <v-card ref="experience" flat>
-          <v-card-title>工作經歷</v-card-title>
-          <v-card class="ma-5">
-            <v-card-title class="rounded elevation-1 mb-2">
-              Information Resources Department staff
-            </v-card-title>
-            <v-card-subtitle>
-              Foon Yew High School Johor Bahru(中學教育事業 100~500人)
-            </v-card-subtitle>
-            <v-card-text>
-              <v-sheet>
-                技術支援：負責協助教職員解決軟體、硬體、網際網路、使用或設置（系統/軟件）等相關問題。
-                <br>
+        <v-row>
+          <v-col cols="12">
+            <h2>工作經驗</h2>
+            <v-divider />
+          </v-col>
+        </v-row>
 
-                軟體相關：負責電腦還原系統設置(使用 Faronics Deep Freeze),進行
-                Windows 及各軟體重大補丁更新，維護電腦系統及軟體。<br>
+        <v-row>
+          <v-col cols="12">
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>軟體工程師</v-card-title>
+              <v-card-subtitle class="text-wrap">國立臺灣師範大學</v-card-subtitle>
+              <v-card-subtitle class="text-wrap">2023/8~仍在職</v-card-subtitle>
+              <v-card-subtitle class="text-wrap">
+                PHP / Laravel / JavaScript (AngularJS / Vue) / MSSQL / Docker / Nginx / Git
+              </v-card-subtitle>
+              <v-card-text>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li>協助設計與開發全新的問卷系統,採用不同的架構與設計理念,成功解決了舊系統無法滿足大量新需求的挑戰。</li>
+                    <li>主動識別並解決系統中的風險、漏洞與弱點,確保系統在稽核過程中未曾出現重大問題。</li>
+                    <li>升級後端框架與更換前端技術棧,顯著提升了系統的安全性與穩定性。</li>
+                    <li>協助培訓並指導 2 名新員工,幫助他們快速適應開發流程並提供技術支援。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
 
-                硬體相關：負責電腦組裝、各類多媒體教學設備等的檢查及維修工作，並進行弱電整合安裝施工。<br>
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>MIS助理</v-card-title>
+              <v-card-subtitle class="text-wrap">Johore Bahru Foon Yew Associated Chinese Schools</v-card-subtitle>
+              <v-card-subtitle class="text-wrap">2018/12~2019/9</v-card-subtitle>
+              <v-card-subtitle class="text-wrap">電腦設備裝配 / 設備維修 / 網路故障排除</v-card-subtitle>
+              <v-card-text>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li>維護各類多媒體教學設備。</li>
+                    <li>網路設定與故障排除。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
 
-                網路相關：負責解決網路（有綫/無綫）無法連接問題、進行 Network
-                switch 檢查維護、進行 IP
-                分配及檢查(當時全校電腦要從本來的固定IP轉爲DHCP)<br><br>
-                #技術支援 #硬體維修 #電腦維修 #行政協助 #網路系統配置 #庫存管理
-              </v-sheet>
-            </v-card-text>
-          </v-card>
-        </v-card>
+        <v-row>
+          <v-col cols="12">
+            <h2>學歷</h2>
+            <v-divider />
+          </v-col>
+        </v-row>
 
-        <v-card ref="education" flat>
-          <v-card-title>學術經歷</v-card-title>
-          <v-card class="ma-5">
-            <v-card-title class="elevation-1 mb-2">國立臺灣科技大學</v-card-title>
-            <v-card-subtitle class="mb-2">資訊管理學系四技畢業</v-card-subtitle>
-          </v-card>
-        </v-card>
+        <v-row>
+          <v-col cols="12">
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>國立臺灣科技大學</v-card-title>
+              <v-card-subtitle class="text-wrap">資訊工程系碩士班</v-card-subtitle>
+              <v-card-subtitle class="text-wrap">2024/9 ~ 碩士日間就讀中</v-card-subtitle>
+              <v-card-text>
+                <strong>研究領域</strong>: 人工智慧、機器學習、資料探勘、深度學習、生成式AI、自然語言處理
+              </v-card-text>
+            </v-card>
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>國立臺灣科技大學</v-card-title>
+              <v-card-subtitle class="text-wrap">資訊管理系大學部</v-card-subtitle>
+              <v-card-subtitle class="text-wrap">2019/9 ~ 2023/7</v-card-subtitle>
+              <v-card-text>
+                <strong>獎項</strong>: 校內專題競賽佳作 - 應用 Hololens 2 於撞球運動輔助系統 <br>
+                <strong>活動</strong>: <br>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li>曾與「臺灣自動化之父」、「競爭力之師」 —— 石滋宜博士進行訪談。</li>
+                    <li>曾擔任兩届僑生社團副會長(2020~2022),在僑生社團創立資訊部門,擔任第一屆資訊長。</li>
+                    <li>首次通過僑生社團與臺科大諮商輔導組合作舉辦心理營。</li>
+                    <li>曾任台科大馬來西亞同學會迎新負責人之一。</li>
+                    <li>曾任第 111 屆華僑學生暨外籍學生畢業典禮活動負責人。</li>
+                    <li>曾參與 112 音樂與文化 | 長者關懷行動。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
 
-        <v-card ref="skill" flat>
-          <v-card-title>專業技能</v-card-title>
-          <v-card class="ma-5">
-            <v-card-title class="elevation-1 mb-2">Programming Language or Skill</v-card-title>
-            <v-card-text>
-              <ul class="ms-5">
-                <li>HTML/CSS/Bootstrap</li>
-                <li>JavaScript/jQuery/AJAX</li>
-                <li>Java</li>
-                <li>PHP/Laravel</li>
-                <li>Python/Flask</li>
-                <li>Google Apps Script/API</li>
-                <li>C#</li>
-              </ul>
+        <v-row>
+          <v-col cols="12">
+            <h2>技能</h2>
+            <v-divider />
+          </v-col>
+        </v-row>
 
-              <br>
-              #Java #Python #C# #PHP #HTML #CSS #JavaScript #jQuery #AJAX
-              #軟體程式設計
-            </v-card-text>
-          </v-card>
+        <v-row>
+          <v-col cols="12">
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>Web開發</v-card-title>
+              <v-card-text>
+                <v-container fluid class="pb-0 ps-6">
+                  <ul>
+                    <li>具備一年以上的開發經驗,精通系統設計與規劃,熟悉 Request Lifecycle,能獨立完成專案開發。</li>
+                    <li>後端使用 Laravel 框架,採用 MVC 架構及物件導向程式設計(OOP),並靈活運用多種設計模式,對系統架構有深入理解,且熟練撰寫單元測試(Unit Test)。</li>
+                    <li>前端使用 Vue.js 搭配 Vuetify UI 框架進行快速開發與響應式網頁設計(RWD),熟悉 webpack 和 Vite 進行打包與優化。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>軟體專案管理</v-card-title>
+              <v-card-text>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li>具備專案管理經驗,根據客戶需求進行可行性評估,並負責系統開發時程的規劃與監控。</li>
+                    <li>採用 Kanban (Jira) 進行敏捷開發,靈活管理開發流程和資源分配。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-card-title>Technical Skills</v-card-title>
+              <v-card-text>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li><strong>Languages</strong>: Java, C#, Python, PHP, JavaScript, HTML, CSS, LotusScript。</li>
+                    <li><strong>Framework</strong>: Laravel, Vue, Vuetify。</li>
+                    <li><strong>Others</strong>: Linux, Git, Docker, Nginx, MySQL, MSSQL, Drone CI, Gitlab CI/CD, HCL
+                      Domino。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
 
-          <v-card class="ma-5">
-            <v-card-title class="elevation-1 mb-2">HCL Domino/Notes/Volt 開發</v-card-title>
-            <v-card-text>
-              <ul class="ms-5">
-                <li>版本經驗:Domino 12.0.1</li>
-                <li>BPM/ Workflow 應用系統開發</li>
-                <li>編程語言： LotusScript、 Formula Language</li>
-              </ul>
+        <v-row>
+          <v-col cols="12">
+            <h2>專案</h2>
+            <v-divider />
+          </v-col>
+        </v-row>
 
-              <br>
-              #LotusScript #Lotus Notes #Domino #軟體程式設計
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title class="elevation-1 mb-2">MySQL</v-card-title>
-            <v-card-text>
-              <ul class="ms-5">
-                <li>熟悉基礎原理，可獨立完成數據庫的設計、管理</li>
-                <li>
-                  熟悉CRUD等操作,理解Inner Join、Left Join、Right Join, Subquery
-                </li>
-                <li>理解資料庫正規化(實作經驗到第三正規化)</li>
-              </ul>
-
-              <br>
-              #MySQL #資料庫程式設計 #資料庫系統管理維護 #資料庫軟體應用
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title class="elevation-1 mb-2">網頁製作</v-card-title>
-            <v-card-text>
-              熟練掌握HTML、CSS、JavaScript、jQuery、Bootstrap、RWD和AJAX等前端技術,具備以下能力:
-              <ul class="ms-5">
-                <li>RWD</li>
-                <li>可開發互動式的網頁應用程式</li>
-                <li>在網頁中使用AJAX進行非同步數據交換</li>
-              </ul>
-              <br>
-              具有4個網頁相關專案的開發經驗,涉及前端和後端技術。後端技術方面,具備以下能力:
-              <ul class="ms-5">
-                <li>精通PHP語言,有Laravel 框架的基礎知識</li>
-                <li>具有Python Flask開發經驗</li>
-                <li>Google Apps Script開發網頁應用程式</li>
-                <li>使用Apache和IBM Cloud / AWS搭建Server</li>
-                <li>使用MySQL資料庫</li>
-              </ul>
-
-              <br>
-              #HTML #CSS #JavaScript #jQuery #PHP #Python #MySQL #AJAX #Git
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title class="elevation-1 mb-2">Scrum</v-card-title>
-            <v-card-text>
-              除了一般的瀑布式開發流程,也了解Scrum和Kanban
-
-              <br><br>
-              #軟體工程系統開發 #專案溝通╱整合管理 #系統架構規劃
-            </v-card-text>
-          </v-card>
-        </v-card>
-
-        <v-card ref="achievements" flat>
-          <v-card-title>專案成就</v-card-title>
-          <v-card class="ma-5">
-            <v-card-title>應用Hololens 2於撞球運動輔助系統</v-card-title>
-            <v-card-text>
-              大學期間實務專題，主要是研究AR/VR和演算法及ML領域，設備為Microsoft Hololens 2。通過MR（Mixed
-              Reality）的方式幫助學習撞球，計算最佳解并且畫出打擊球的路徑輔助綫。此專題獲得校内的專題競賽佳獎。
-              ●負責處理UWP的建制，部署到Hololens2上
-              ●Unity / C# .NET 開發
-              ●MRTK部件應用
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>全臺客運後臺系統</v-card-title>
-            <v-card-text>
-              ●Apache + PHP + MySQL
-              ●組長，負責爲系統及資料庫分析、後臺建設
-              ●登陸系統
-              ●管理者後臺系統（發佈公告）
-              ●使用者系統（訂單管理、訂票記錄、個人資料……）
-              ●Cookie的運用
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>跨部門物品借用系統</v-card-title>
-            <v-card-text>
-              ●HCL Domino/Notes （網頁：Xpages）
-              ●LotusScript + Formula Language
-              ●組長，負責系統分析、商業邏輯、程式編輯及統整
-              ●各部門人員層級權限、限制（新增/物品、借用……）
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>僑外籍生畢業晚會活動網站</v-card-title>
-            <v-card-text>
-              ●Google Apps Script + Google API + Google Sites
-              ●組長，負責規劃網頁及指導非技術人員建制網站和功能、程式編輯
-              ●HTML Form post到Google Form
-              ●畢業生資料登陸系統、留言墻、晚宴桌位查詢系統
-            </v-card-text>
-            <v-card-actions>
-              <v-btn href="https://sites.google.com/view/2023-ntust-osgp/home">前往查看</v-btn>
-            </v-card-actions>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>多執行緒Youtube影片下載器</v-card-title>
-            <v-card-text>
-              ●Python
-              ●注冊/登錄系統（歷史記錄）
-              ●下載後可直接點開播放
-              ●多執行緒加快下載速度
-              ●多執行緒的鎖定
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>在綫網頁播放器 - 輕量化家用NAS音樂播放器</v-card-title>
-            <v-card-text>
-              ●Python Flask + IBM Cloud
-              ●組長，負責後端和整合
-              ●讀取音樂檔案並播放，支援大部分市面上音樂播放的基礎功能
-              ●受當時Clubhouse風潮影響，建立Room功能，可以多人同時一起聼一個房主的播放列表
-            </v-card-text>
-          </v-card>
-        </v-card>
-
-        <v-card ref="language" flat>
-          <v-card-title>語文能力</v-card-title>
-          <v-card class="ma-5">
-            <v-card-title>英文</v-card-title>
-            <v-card-text>
-              聽/中等說/略懂讀/中等寫/略懂
-              TOEIC (多益測驗) 680分
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>馬來文</v-card-title>
-            <v-card-text>
-              聽/中等說/略懂讀/中等寫/略懂
-            </v-card-text>
-          </v-card>
-        </v-card>
-
-        <v-card ref="societies" flat>
-          <v-card-title>社團活動</v-card-title>
-          <v-card class="ma-5">
-            <v-card-title>國立臺灣科技大學僑生聯誼社</v-card-title>
-            <v-card-subtitle>2020/7~2022/6</v-card-subtitle>
-            <v-card-text>
-              109、110屆副社長
-              任職期間策劃及舉辦超過10次中大型活動
-              創建資訊部門，建立形象網站與活動網站設計，與組員協作開發新功能
-              111年度應届畢業僑外籍生畢業晚會活動負責人（副）
-            </v-card-text>
-          </v-card>
-
-          <v-card class="ma-5">
-            <v-card-title>國立臺灣科技大學馬來西亞同學會</v-card-title>
-            <v-card-subtitle>2019/12~2020/10</v-card-subtitle>
-            <v-card-text>
-              108屆歡送會公關
-              應届畢業生資料搜集及聯係
-              對外廠商聯係
-
-              109屆新生輔導小組公關、迎新活動游戲策劃組
-              統整來臺資訊，持續更新注意事項
-              負責迎活動内容策劃及場控
-            </v-card-text>
-          </v-card>
-        </v-card>
-      </v-container>
+        <v-row>
+          <v-col cols="12">
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <v-img src="/tted.jpg"></v-img>
+              <v-card-title>教育部中小學師資資料庫(工作負責項目)</v-card-title>
+              <v-card-text>
+                為瞭解國內師資培育現況,自民國97年底,建置「師資培育長期追蹤資料庫」,針對各學年度全國師資生,進行個人且長期的追蹤性調查。提供政府及學界實徵性的調查資料,以供師資培育政策制訂與學術研究之用,期以提升教師之素質。
+                <v-container fluid class="pb-0 ps-6">
+                  <ul>
+                    <li>系統開發與維護,包括權限管理、檔案管理和表單管理等系統。</li>
+                    <li>建立統計分析資料系統,能夠分析不同師資培育大學或全國的師資培育現況。</li>
+                    <li>將資料視覺化,幫助使用者快速理解分析結果。</li>
+                    <li>問卷系統開發、問卷編輯。</li>
+                    <li>資安威脅、漏洞修補。</li>
+                    <li>敏捷開發,ISMS資訊安全管理流程。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <div class="bg-black">
+                <v-img src="/2023grad.png" height="255"></v-img>
+              </div>
+              <v-card-title>僑外籍生畢業晚會活動網站</v-card-title>
+              <v-card-text>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li>使用Google Apps Script 和 JavaScript進行開發。</li>
+                    <li>在不配置伺服器(Apache、Nginx)的情況下解決跨站源資源共享(CORS)問題,確保系統正常運行。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+            <v-card class="mb-6" variant="outlined" rounded="xl">
+              <div class="bg-black">
+                <v-img src="/achievement.webp" cover height="255"></v-img>
+              </div>
+              <v-card-title>應用 Hololens 2 於撞球運動輔助系統</v-card-title>
+              <v-card-text>
+                <v-container fluid class="py-0 ps-6">
+                  <ul>
+                    <li>負責 Unity 畫面渲染,使用 C# 和 MRTK(Mixed Reality Toolkit)進行開發。</li>
+                    <li>幫助撞球選手找到最佳打擊角度,並預測撞擊路徑。</li>
+                  </ul>
+                </v-container>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-sheet>
     </v-sheet>
     <TopButton />
   </v-main>
 </template>
 
 <script setup>
-  import AppDrawer from '@/components/AppDrawer.vue'
-  import TopButton from '@/components/TopButton.vue'
+import AppDrawer from '@/components/AppDrawer.vue'
+import TopButton from '@/components/TopButton.vue'
 </script>
